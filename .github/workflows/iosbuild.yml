@@ -37,20 +37,7 @@ jobs:
             
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' --clean-after-build
+            ./vcpkg install 'mongo-c-driver:arm64-ios-release' --clean-after-build
 
             cat /Users/runner/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
         shell: pwsh
-      #编译
-      - name: make ios release
-        run: |
-            cd XEngine_SourceCode
-            make PLATFORM=ios ARCH=arm RELEASE=1
-            make PLATFORM=ios ARCH=arm FLAGS=install
-            make PLATFORM=ios ARCH=arm FLAGS=clean
-      #将文件夹打包为 artifact
-      - name: Upload folder as artifact 
-        uses: actions/upload-artifact@v4
-        with:
-          name: XEngine_IOS_Arm64
-          path: XEngine_Release/
