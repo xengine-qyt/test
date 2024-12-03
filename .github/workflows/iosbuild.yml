@@ -38,6 +38,8 @@ jobs:
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
             ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' --clean-after-build
+
+            cat /Users/runner/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
         shell: pwsh
       #编译
       - name: make ios release
