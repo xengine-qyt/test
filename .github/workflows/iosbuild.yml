@@ -1,0 +1,56 @@
+name: ios build workflows
+
+on:
+  push:
+    branches: 
+      - master
+
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: macos-14
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+        with:
+          ref: 'develop'
+
+      - name: brew install
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg              
+      - name: vcpkg install
+        run: |
+            brew install pkg-config autoconf
+
+            cp arm64-ios-xengine.cmake vcpkg/triplets/arm64-ios-xengine.cmake
+            cp -rf ./vcpkg $HOME
+            
+            cd $HOME/vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:arm64-ios-xengine 'curl[openssl,http2]:arm64-ios-xengine' 'libmariadb[openssl]:arm64-ios-xengine' zlib:arm64-ios-xengine minizip:arm64-ios-xengine sqlite3:arm64-ios-xengine nghttp2:arm64-ios-xengine ffmpeg:arm64-ios-xengine --clean-after-build
+        shell: pwsh
+      #编译
+      - name: make ios release
+        run: |
+            cd XEngine_SourceCode
+            make PLATFORM=ios ARCH=arm RELEASE=1
+            make PLATFORM=ios ARCH=arm FLAGS=install
+            make PLATFORM=ios ARCH=arm FLAGS=clean
+      #将文件夹打包为 artifact
+      - name: Upload folder as artifact 
+        uses: actions/upload-artifact@v4
+        with:
+          name: XEngine_IOS_Arm64
+          path: XEngine_Release/
