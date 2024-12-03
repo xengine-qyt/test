@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-13
+          - os: macos-14
     runs-on: ${{ matrix.os }}
     
     steps:
@@ -37,7 +37,7 @@ jobs:
             
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver[core,openssl]:arm64-ios-release' 'libpq[openssl]:arm64-ios-release' --clean-after-build
+            ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' 'libpq[openssl]:arm64-ios-release' --clean-after-build
 
             cat /Users/runner/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
         shell: pwsh
