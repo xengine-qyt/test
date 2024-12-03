@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v4
-        with:
-          ref: 'develop'
 
       - name: brew install
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
