@@ -37,7 +37,7 @@ jobs:
             
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios-xengine' --clean-after-build
+            ./vcpkg install 'mongo-c-driver[core,openssl]:arm64-ios-release' --clean-after-build
 
             cat /Users/runner/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
         shell: pwsh

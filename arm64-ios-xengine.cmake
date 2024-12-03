@@ -4,5 +4,3 @@ set(VCPKG_LIBRARY_LINKAGE static)
 set(VCPKG_CMAKE_SYSTEM_NAME iOS)
 
 set(VCPKG_BUILD_TYPE release)
-
-set(VCPKG_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/)
