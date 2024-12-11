@@ -30,11 +30,8 @@ jobs:
           path: vcpkg              
       - name: vcpkg install
         run: |
-            brew install pkg-config autoconf
-
-            cp arm64-ios-xengine.cmake vcpkg/triplets/arm64-ios-xengine.cmake
             cp -rf ./vcpkg $HOME
             
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' 'libpq[openssl]:arm64-ios-release' --clean-after-build
+            ./vcpkg install 'mongo-c-driver:arm64-ios-release' 'libpq:arm64-ios-release' --clean-after-build
