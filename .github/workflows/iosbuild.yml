@@ -32,7 +32,7 @@ jobs:
         run: |
             brew install pkg-config autoconf
 
-            cp arm64-ios-xengine.cmake vcpkg/triplets/arm64-ios-release.cmake
+            cp arm64-ios-xengine.cmake vcpkg/triplets/arm64-ios-xengine.cmake
             cp -rf ./vcpkg $HOME
             
             cd $HOME/vcpkg
