@@ -1,0 +1,28 @@
+name: mac build workflows
+
+on:
+  push:
+    branches: 
+      - main
+
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: macos-13
+          - os: macos-14
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+               
+      - name: vcpkg install
+        run: |
+            g++ 1.cpp -o a.out
+            ./a.out
+            sudo system_profiler SPHardwareDataType
