@@ -30,6 +30,7 @@ jobs:
           path: vcpkg              
       - name: vcpkg install
         run: |
+            brew install autoconf
             cp -rf ./vcpkg $HOME
             
             cd $HOME/vcpkg
