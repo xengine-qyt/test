@@ -28,14 +28,15 @@ jobs:
         with:
           repository: microsoft/vcpkg
           path: vcpkg              
+          
       - name: vcpkg install
         run: |
-            brew install autoconf
-            cp -rf ./vcpkg $HOME
-            
-            cd $HOME/vcpkg
+            # brew install autoconf
+            # cp -rf ./vcpkg $HOME
+            # cd $HOME/vcpkg
+            cd vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'libpq:arm64-ios-release' --clean-after-build
+            ./vcpkg install 'mongo-c-driver:arm64-ios-release' 'libpq:arm64-ios-release' --clean-after-build
 
             cat /Users/runner/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
             echo -e "========================="
