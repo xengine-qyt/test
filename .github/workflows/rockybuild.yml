@@ -18,19 +18,7 @@ jobs:
       - name: Checkout main repository code
         uses: actions/checkout@v4
         with:
-          ref: 'master'
-        
-       # 检出依赖的xengine仓库到指定的xengine目录
-      - name: Checkout dependency repository (xengine)
-        uses: actions/checkout@v4
-        with:
-          repository: libxengine/libxengine
-          path: libxengine
-
-      - name: sub module checkout (opensource)
-        run: |
-            git submodule init
-            git submodule update
+          ref: 'develop'
 
       # 设置依赖库的环境变量
       - name: Set up Dependency rockylinux Environment
