@@ -19,7 +19,7 @@ function InstallEnv_Print()
 	echo -e "\033[32m|***************************************************************************|\033[0m"
 	echo -e "\033[33m                       XEngine-开发环境安装脚本                               \033[0m"
 	echo -e "\033[33m                       运行环境：Linux Mac x64                                \033[0m"
-	echo -e "\033[33m                       脚本版本：Ver 9.2.0.1001                              \033[0m"
+	echo -e "\033[33m                       脚本版本：Ver 9.10.0.1001                              \033[0m"
 	echo -e "\033[32m|***************************************************************************|\033[0m"
 	echo -e "\033[44;37m当前时间：$m_EnvTimer 执行用户：$m_EnvExecName 你的环境：$m_EnvCurrent\033[0m"
 }
@@ -100,11 +100,11 @@ function InstallEnv_Checkepel()
 		echo -e "\033[34m检查你的扩展源是否安装。。。\033[0m"
 		rpmepel='epel-release'
 		rpmfusion='rpmfusion-free-release'
-		sudo dnf update -y
+		dnf update -y
 		if test -z `rpm -qa $rpmepel`
 		then 
 			echo -e "\033[36m不存在epel扩展源，将开始安装。。。\033[0m"
-			sudo dnf install epel-release -y
+			dnf install epel-release -y
 			echo -e "\033[36m$rpmepel 安装完毕\033[0m"
 		else
 			echo -e "\033[36mepel扩展源存在。。。\033[0m"
@@ -112,8 +112,7 @@ function InstallEnv_Checkepel()
 		if test -z `rpm -qa | grep $rpmfusion`
 		then 
 			echo -e "\033[35m不存在rpmfusion扩展源，将开始安装。。。\033[0m"
-			sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
-			sudo dnf config-manager --enable crb
+			dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 			echo -e "\033[36mrpmfusion 安装完毕\033[0m"
 		else
 			echo -e "\033[36mrpmfusion 扩展源存在。。。\033[0m"
@@ -142,7 +141,7 @@ function InstallEnv_CheckIns()
 	#Centos
 	if [ "$m_EnvRelease" -eq "1" ] ; then
 		echo -e "\033[35mdeb开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
-		sudo dnf install $m_EnvRPM -y
+		dnf install $m_EnvRPM -y
 		echo -e "\033[36mdeb依赖库安装完毕\033[0m"
 	fi
 	#UBuntu

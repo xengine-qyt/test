@@ -31,7 +31,7 @@ jobs:
           
       - name: vcpkg install
         run: |
-            brew install cmake ninja pkg-config autoconf 
+            brew install cmake ninja pkg-config autoconf libresolv
             # cp -rf ./vcpkg $HOME
             # cd $HOME/vcpkg
             cd vcpkg
