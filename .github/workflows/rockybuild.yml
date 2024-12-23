@@ -44,6 +44,8 @@ jobs:
       - name: out log 
         run: |
             chmod 777 ./build.sh
+            cp ./build.sh ./vcpkg/
+            cd vcpkg
             ./build.sh
             cat ./buildtrees/libsystemd/config-x64-linux-dbg-meson-log.txt.log
             echo "==================================================="
