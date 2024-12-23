@@ -27,10 +27,10 @@ jobs:
       - name: vcpkg install
         run: |
             cd vcpkg
-            dnf install --allowerasing curl zip unzip tar git -y
+            dnf install --allowerasing curl zip unzip tar autoconf libtool -y
             dnf install perl-IPC-Cmd perl-CPAN bison flex autoconf -y
             yes | cpan IPC::Cmd
 
             ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:x64-linux openssl:x64-linux curl[http2]:x64-linux mongo-c-driver[openssl]:x64-linux libmariadb[openssl]:x64-linux libpq[openssl]:x64-linux zlib:x64-linux minizip:x64-linux sqlite3:x64-linux nghttp2:x64-linux
             ./vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,aom,ass,fdk-aac,ffmpeg,ffplay,ffprobe,nvcodec,opengl,opencl,qsv,x264,x265,webp]:x64-linux
-            ./vcpkg install libiconv:x64-linux openssl:x64-linux curl[http2]:x64-linux mongo-c-driver[openssl]:x64-linux libmariadb[openssl]:x64-linux libpq[openssl]:x64-linux zlib:x64-linux minizip:x64-linux sqlite3:x64-linux nghttp2:x64-linux ffmpeg[all-nonfree,drawtext,fontconfig,amf,aom,ass,fdk-aac,ffmpeg,ffplay,ffprobe,nvcodec,opengl,opencl,qsv,x264,x265,webp] --clean-after-build
