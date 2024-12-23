@@ -9,7 +9,7 @@ m_EnvFileBreak=0
 m_EvnFileClear=0
 m_EnvAuthBreak=0
 m_EnvRelease=0
-m_EnvRPM='git gcc g++ gdb make'
+m_EnvRPM='git gcc g++ gdb make nasm'
 m_EnvAPT='git gcc g++ gdb make libcurl4-openssl-dev libssl-dev libmysqlclient-dev zlib1g-dev libminizip-dev libmongoc-dev libbson-dev libpq-dev libsqlite3-dev libnghttp2-dev build-essential manpages-dev net-tools'
 m_EnvMAC='curl openssl@3.0 sqlite zlib minizip mongo-c-driver mysql-client@8.0 libpq libnghttp2 ffmpeg@6'
 
@@ -113,6 +113,7 @@ function InstallEnv_Checkepel()
 		then 
 			echo -e "\033[35m不存在rpmfusion扩展源，将开始安装。。。\033[0m"
 			dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
+			sudo dnf config-manager --enable crb
 			echo -e "\033[36mrpmfusion 安装完毕\033[0m"
 		else
 			echo -e "\033[36mrpmfusion 扩展源存在。。。\033[0m"
