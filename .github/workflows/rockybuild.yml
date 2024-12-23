@@ -17,13 +17,17 @@ jobs:
        # 检出您的主仓库代码
       - name: Checkout main repository code
         uses: actions/checkout@v4
-        with:
-          ref: 'develop'
 
-      # 设置依赖库的环境变量
-      - name: Set up Dependency rockylinux Environment
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg     
+
+      - name: vcpkg install
         run: |
-            cd libxengine
-            chmod 777 *
-            sudo ./XEngine_LINEnv.sh -i 3
-            cd ..
+            cd vcpkg
+            ./bootstrap-vcpkg.sh
+            sudo dnf install perl-IPC-Cmd perl-CPAN bison flex autoconf -y
+            yes | sudo cpan IPC::Cmd
+            ./vcpkg install libiconv curl[http2] mongo-c-driver[openssl] libmariadb[core,openssl] libpq[openssl] zlib minizip sqlite3 nghttp2 --clean-after-build
