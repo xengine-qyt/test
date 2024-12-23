@@ -27,9 +27,9 @@ jobs:
       - name: vcpkg install
         run: |
             cd vcpkg
-            sudo dnf install curl zip unzip tar -y
-            sudo dnf install perl-IPC-Cmd perl-CPAN bison flex autoconf -y
+            dnf install curl zip unzip tar -y
+            dnf install perl-IPC-Cmd perl-CPAN bison flex autoconf -y
 
             ./bootstrap-vcpkg.sh
-            yes | sudo cpan IPC::Cmd
+            yes | cpan IPC::Cmd
             ./vcpkg install libiconv curl[http2] mongo-c-driver[openssl] libmariadb[core,openssl] libpq[openssl] zlib minizip sqlite3 nghttp2 --clean-after-build
