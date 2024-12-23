@@ -20,9 +20,9 @@ jobs:
 
       - name: install library
         run: |
-            cd XEngine_SourceCode
-            chmod 777 ./XEngine_BuildMake.sh
-            ./XEngine_BuildMake.sh
+            dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
+            dnf config-manager --enable crb
+            dnf install git gcc g++ gdb make nasm -y
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
