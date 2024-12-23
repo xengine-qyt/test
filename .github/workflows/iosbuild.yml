@@ -36,4 +36,5 @@ jobs:
             # cd $HOME/vcpkg
             cd vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'libpq:arm64-ios-release' --clean-after-build
+            ./vcpkg install 'libbson:arm64-ios-release'
+            ./vcpkg install 'libpq:arm64-ios-release' --triplet arm64-ios-release
