@@ -22,8 +22,8 @@ jobs:
         run: |
             cd XEngine_SourceCode
             chmod 777 ./XEngine_BuildMake.sh
-            sudo ./XEngine_BuildMake.sh
-            
+            ./XEngine_BuildMake.sh
+
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
         with:
