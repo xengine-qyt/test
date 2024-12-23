@@ -100,7 +100,6 @@ function InstallEnv_Checkepel()
 		echo -e "\033[34m检查你的扩展源是否安装。。。\033[0m"
 		rpmepel='epel-release'
 		rpmfusion='rpmfusion-free-release'
-		dnf update -y
 		if test -z `rpm -qa $rpmepel`
 		then 
 			echo -e "\033[36m不存在epel扩展源，将开始安装。。。\033[0m"
@@ -113,7 +112,8 @@ function InstallEnv_Checkepel()
 		then 
 			echo -e "\033[35m不存在rpmfusion扩展源，将开始安装。。。\033[0m"
 			dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
-			sudo dnf config-manager --enable crb
+			dnf config-manager --enable crb
+			dnf update -y
 			echo -e "\033[36mrpmfusion 安装完毕\033[0m"
 		else
 			echo -e "\033[36mrpmfusion 扩展源存在。。。\033[0m"
