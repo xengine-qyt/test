@@ -37,7 +37,7 @@ jobs:
             cd vcpkg
             ./bootstrap-vcpkg.sh
             ./vcpkg install 'libbson:arm64-ios-release'
-            ./vcpkg install 'mongo-c-drive:arm64-ios-release'
+            ./vcpkg install 'mongo-c-driver:arm64-ios-release'
             # ./vcpkg install 'mongo-c-driver:arm64-ios-release' 'libpq:arm64-ios-release' --triplet arm64-ios-release
 
             echo "========================="
