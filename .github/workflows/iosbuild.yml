@@ -32,12 +32,7 @@ jobs:
       - name: vcpkg install
         run: |
             brew install cmake ninja pkg-config autoconf
-            # cp -rf ./vcpkg $HOME
-            # cd $HOME/vcpkg
             cd vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' || cat /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
+            ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' || cat ./buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
             # ./vcpkg install 'mongo-c-driver:arm64-ios-release' 'libpq:arm64-ios-release' --triplet arm64-ios-release
-
-            echo "========================="
-            cat /Users/runner/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-release-rel-out.log
