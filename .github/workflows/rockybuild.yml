@@ -33,7 +33,7 @@ jobs:
       - name: vcpkg install
         run: |
             cd vcpkg
-            dnf install --allowerasing curl zip unzip tar autoconf libtool -y
+            dnf install --allowerasing curl zip unzip tar autoconf libtool nasm -y
             dnf install perl-IPC-Cmd perl-CPAN bison flex -y
             yes | cpan IPC::Cmd
 
