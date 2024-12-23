@@ -18,6 +18,12 @@ jobs:
       - name: Checkout main repository code
         uses: actions/checkout@v4
 
+      - name: install library
+        run: |
+            cd XEngine_SourceCode
+            chmod 777 ./XEngine_BuildMake.sh
+            sudo ./XEngine_BuildMake.sh
+            
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
         with:
@@ -28,7 +34,7 @@ jobs:
         run: |
             cd vcpkg
             dnf install --allowerasing curl zip unzip tar autoconf libtool -y
-            dnf install perl-IPC-Cmd perl-CPAN bison flex autoconf -y
+            dnf install perl-IPC-Cmd perl-CPAN bison flex -y
             yes | cpan IPC::Cmd
 
             ./bootstrap-vcpkg.sh
