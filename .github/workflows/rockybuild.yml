@@ -32,7 +32,7 @@ jobs:
       - name: vcpkg install
         run: |
             cd vcpkg
-            dnf install --allowerasing curl zip unzip tar autoconf libtool python3-jinja2 -y
+            dnf install --allowerasing curl zip unzip tar autoconf libtool python3-jinja2 diffutils -y
             dnf install perl-IPC-Cmd perl-CPAN bison flex -y
             yes | cpan IPC::Cmd
 
