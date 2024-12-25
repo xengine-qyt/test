@@ -37,8 +37,8 @@ jobs:
             yes | cpan IPC::Cmd
 
             ./bootstrap-vcpkg.sh
-            # ./vcpkg install libiconv:x64-linux openssl:x64-linux curl[http2]:x64-linux mongo-c-driver[openssl]:x64-linux libmariadb[openssl]:x64-linux libpq[openssl]:x64-linux zlib:x64-linux minizip:x64-linux sqlite3:x64-linux nghttp2:x64-linux
-            ./vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,aom,ass,fdk-aac,nvcodec,opencl,qsv,x264,x265,webp]:x64-linux 2>&1 | tee /tmp/vcpkg_install.log
+            #./vcpkg install libiconv:x64-linux-release openssl:x64-linux-release curl[http2]:x64-linux-release mongo-c-driver[openssl]:x64-linux-release libmariadb[openssl]:x64-linux-release libpq[openssl]:x64-linux-release zlib:x64-linux-release minizip:x64-linux-release sqlite3:x64-linux-release nghttp2:x64-linux-release
+            ./vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265]:x64-linux-release 2>&1 | tee /tmp/vcpkg_install.log
             cat /tmp/vcpkg_install.log
 
       - name: Upload vcpkg install log
@@ -46,7 +46,7 @@ jobs:
         with:
           name: vcpkg_logs
           path: |
-            /__w/test/test/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-config.log
-            /__w/test/test/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-out.log
+            /__w/test/test/vcpkg/buildtrees/ffmpeg/build-x64-linux-release-rel-config.log
+            /__w/test/test/vcpkg/buildtrees/ffmpeg/build-x64-linux-release-rel-out.log
           
 
