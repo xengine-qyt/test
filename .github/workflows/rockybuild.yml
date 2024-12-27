@@ -21,7 +21,7 @@ jobs:
         run: |
             dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
             dnf config-manager --enable crb
-            dnf install git gcc g++ gdb make nasm -y
+            dnf install git gcc g++ gdb make -y
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
       - name: vcpkg install
         run: |
             cd vcpkg
-            dnf install --allowerasing curl zip unzip tar autoconf libtool python3-jinja2 diffutils -y
+            dnf install --allowerasing nasm curl zip unzip tar autoconf libtool python3-jinja2 diffutils -y
             dnf install perl-IPC-Cmd perl-CPAN bison flex -y
             yes | cpan IPC::Cmd
 
