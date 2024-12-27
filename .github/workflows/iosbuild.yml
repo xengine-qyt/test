@@ -31,7 +31,7 @@ jobs:
           
       - name: vcpkg install
         run: |
-            brew install cmake ninja pkg-config autoconf
+            brew install cmake ninja pkg-config autoconf nasm
             cd vcpkg
             ./bootstrap-vcpkg.sh
             ./vcpkg install 'ffmpeg[gpl,amf,aom,ass,drawtext,fontconfig,freetype,fribidi,snappy,soxr,srt,vorbis,vpx,webp,x264,x265]:arm64-ios-release'
