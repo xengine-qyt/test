@@ -46,5 +46,9 @@ jobs:
         with:
           name: vcpkg_logs
           path: |
-            /Users/runner/work/test/test/vcpkg/buildtrees/x264/make-all-arm64-ios-rel-err.log
+            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-CMakeCache.txt.log
+            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-CMakeConfigureLog.yaml.log
+            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-out.log
+            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-err.log
+
           
