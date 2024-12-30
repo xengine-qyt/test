@@ -34,12 +34,12 @@ jobs:
             brew install cmake ninja pkg-config autoconf nasm
             cd vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'ffmpeg[gpl]:arm64-ios' 2>&1 | tee /tmp/vcpkg_install.log
-            cat /tmp/vcpkg_install.log
+            # ./vcpkg install 'ffmpeg[gpl]:arm64-ios' 2>&1 | tee /tmp/vcpkg_install.log
+            # cat /tmp/vcpkg_install.log
 
             # ./vcpkg install 'ffmpeg[gpl,amf,aom,ass,drawtext,fontconfig,freetype,fribidi,snappy,soxr,srt,vorbis,vpx,webp,x264,x265]:arm64-ios-release'
-            # ./vcpkg install 'mongo-c-driver[openssl]:arm64-ios-release' 2>&1 | tee /tmp/vcpkg_install.log
-            # cat /tmp/vcpkg_install.log
+            ./vcpkg install 'mongo-c-driver:arm64-ios' 2>&1 | tee /tmp/vcpkg_install.log
+            cat /tmp/vcpkg_install.log
 
       - name: Upload vcpkg install log
         uses: actions/upload-artifact@v4
