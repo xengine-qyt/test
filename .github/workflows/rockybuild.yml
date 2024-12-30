@@ -2,7 +2,7 @@ name: rocky build workflows
 
 on:
   push:
-    branches: [ "main1" ]
+    branches: [ "main" ]
   
 permissions:
   contents: read
