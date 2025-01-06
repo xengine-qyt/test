@@ -46,7 +46,7 @@ jobs:
         with:
           name: vcpkg_logs
           path: |
-            /__w/test/test/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-config.log
-            /__w/test/test/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-out.log
+            /github/home/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-config.log
+            /github/home/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-out.log
           
 
