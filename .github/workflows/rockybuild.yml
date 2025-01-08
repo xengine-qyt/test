@@ -33,7 +33,8 @@ jobs:
         run: |
             cp -rf ./vcpkg $HOME/vcpkg
             cd $HOME/vcpkg
-            dnf install --allowerasing nasm curl zip unzip tar autoconf libtool python3-jinja2 diffutils mesa-libGL-devel -y
+            dnf install --allowerasing nasm curl zip unzip tar autoconf libtool python3-jinja2 diffutils -y
+            dnf install mesa-libGL-devel libX11-devel libXft-devel libXext-devel wayland-devel libxkbcommon-devel mesa-libEGL-devel ibus-devel -y
             dnf install perl-IPC-Cmd perl-CPAN bison flex -y
             yes | cpan IPC::Cmd
 
