@@ -9,9 +9,12 @@ permissions:
   
 jobs:
   build:
-    runs-on: 
-      - ubuntu-24.04
-      - ubuntu-22.04
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-22.04
+          - os: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout main repository code
@@ -29,15 +32,5 @@ jobs:
             cd $HOME/vcpkg
 
             ./bootstrap-vcpkg.sh
-            ././vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265]:x64-linux 2>&1 | tee /tmp/vcpkg_install.log
-            cat /tmp/vcpkg_install.log
-
-      - name: Upload vcpkg install log
-        uses: actions/upload-artifact@v4
-        with:
-          name: vcpkg_logs
-          path: |
-            /github/home/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-config.log
-            /github/home/vcpkg/buildtrees/ffmpeg/build-x64-linux-rel-out.log
-          
-
+            ././vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265,postproc]:x64-linux
+            ls -al ./installed/x64-linux/lib
