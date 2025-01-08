@@ -45,3 +45,7 @@ jobs:
             ././vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265,postproc]:x64-linux
             ls -al ./installed/x64-linux/lib
 
+      - name: build
+        run: |
+            g++ -Wall -fPIC -std=c++20 -o ConsoleApplication2.cpp -o ConsoleApplication2.exe -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale -lpostproc -I /github/home/vcpkg/installed/x64-linux/include -L /github/home/vcpkg/installed/x64-linux/lib
+
