@@ -1,40 +1,27 @@
-name: rocky build workflows
+name: ubuntu build workflows
 
 on:
   push:
-    branches: [ "main1" ]
+    branches: [ "main" ]
   
 permissions:
   contents: read
   
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: rockylinux/rockylinux:9
+    runs-on: 
+      - ubuntu-24.04
+      - ubuntu-22.04
 
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v4
-
-      - name: install library
-        run: |
-            dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
-            dnf config-manager --enable crb
-            dnf install git gcc g++ gdb make -y
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
           path: vcpkg     
-
-      - name: library install 
-        run: |
-            dnf install --allowerasing nasm curl zip unzip tar autoconf libtool python3-jinja2 diffutils -y
-            dnf install mesa-libGL-devel libX11-devel libXft-devel libXext-devel wayland-devel libxkbcommon-devel mesa-libEGL-devel ibus-devel -y
-            dnf install perl-IPC-Cmd perl-CPAN bison flex -y
-            yes | cpan IPC::Cmd
 
       - name: vcpkg install
         run: |
