@@ -28,6 +28,7 @@ jobs:
 
       - name: vcpkg install
         run: |
+            sudo apt install nasm
             cp -rf ./vcpkg $HOME/vcpkg
             cd $HOME/vcpkg
 
