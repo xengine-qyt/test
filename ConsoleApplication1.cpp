@@ -124,7 +124,7 @@ int main()
 	}
 
 	// Main loop: read from the input file, encode, write to the output file
-	while (fread(frame->data[0], 1, frame->linesize[0], input_file) == frame->linesize[0]) {
+	while (fread(frame->data[0], 1, frame->linesize[0], input_file) == (size_t)frame->linesize[0]) {
 		frame->pts = next_pts;  // Set PTS for the frame
 		next_pts += frame->nb_samples;  // Increment the next PTS
 		// Send the frame to the encoder
