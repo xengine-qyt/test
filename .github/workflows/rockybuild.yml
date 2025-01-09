@@ -2,7 +2,7 @@ name: rocky build workflows
 
 on:
   push:
-    branches: [ "main1" ]
+    branches: [ "main" ]
   
 permissions:
   contents: read
@@ -42,14 +42,13 @@ jobs:
             cd $HOME/vcpkg
 
             ./bootstrap-vcpkg.sh
-            ././vcpkg install ffmpeg[x264,x265,postproc]:x64-linux
-            ls -al ./installed/x64-linux/lib
+            ././vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265]:x64-linux-dynamic
+            ls -al ./installed/x64-linux-dynamic/lib
 
       - name: build
         run: |
             g++ -Wall -std=c++20 -I /github/home/vcpkg/installed/x64-linux/include -L /github/home/vcpkg/installed/x64-linux/lib ConsoleApplication1.cpp -o ConsoleApplication1 \
-            -lavformat -lavcodec -lavutil -lavdevice -lavfilter -lswscale -lswresample -lpostproc \
-            -lx264 -lx265
+            -lavformat -lavcodec -lavutil -lavdevice -lavfilter -lswscale -lswresample -lpostproc 
             ls -al
             chmod 777 ConsoleApplication1
             ./ConsoleApplication1
