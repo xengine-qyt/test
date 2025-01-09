@@ -26,9 +26,13 @@ jobs:
           repository: microsoft/vcpkg
           path: vcpkg     
 
+      - name: library install
+        run: |
+            sudo apt install curl zip unzip tar -y
+            sudo apt install gcc g++ nasm autoconf automake libtool pkg-config -y
+
       - name: vcpkg install
         run: |
-            sudo apt install nasm autoconf automake libtool pkg-config -y
             cp -rf ./vcpkg $HOME/vcpkg
             cd $HOME/vcpkg
 
