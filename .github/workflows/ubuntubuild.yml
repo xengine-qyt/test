@@ -2,7 +2,7 @@ name: ubuntu build workflows
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main1s" ]
   
 permissions:
   contents: read
