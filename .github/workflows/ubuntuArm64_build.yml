@@ -1,0 +1,36 @@
+name: ubuntu Arm64 build workflows
+
+on:
+  push:
+    branches: 
+      - main
+  
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+        
+      - name: install library
+        run: |
+            sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu cpp-aarch64-linux-gnu bison flex nasm -y
+
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg  
+      - name: vcpkg install
+        run: |
+            cp -rf ./vcpkg $HOME
+            cd $HOME/vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:arm64-linux-release curl[http2]:arm64-linux-release mongo-c-driver:arm64-linux-release libmariadb[openssl]:arm64-linux-release libpq[openssl]:arm64-linux-release zlib:arm64-linux-release minizip:arm64-linux-release sqlite3:arm64-linux-release nghttp2:arm64-linux-release
+            ./vcpkg install ffmpeg[gpl,postproc]:arm64-linux-release
