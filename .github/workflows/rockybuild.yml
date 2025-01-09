@@ -47,7 +47,7 @@ jobs:
 
       - name: build
         run: |
-            g++ -Wall -std=c++20 -I /github/home/vcpkg/installed/x64-linux/include -L /github/home/vcpkg/installed/x64-linux/lib ConsoleApplication1.cpp -o ConsoleApplication1 -lavcodec -lavdevice -lavfilter -lavformat -lavutil -lswresample -lswscale -lpostproc
+            g++ -Wall -std=c++20 -I /github/home/vcpkg/installed/x64-linux/include -L /github/home/vcpkg/installed/x64-linux/lib ConsoleApplication1.cpp -o ConsoleApplication1 -Wl,--whole-archive $(ls /github/home/vcpkg/installed/x64-linux/lib*.a) -Wl,--no-whole-archive
             ls -al
             chmod 777 ConsoleApplication1
             ./ConsoleApplication1
