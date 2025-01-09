@@ -2,7 +2,7 @@ name: ubuntu build workflows
 
 on:
   push:
-    branches: [ "main1" ]
+    branches: [ "main" ]
   
 permissions:
   contents: read
@@ -33,5 +33,5 @@ jobs:
             cd $HOME/vcpkg
 
             ./bootstrap-vcpkg.sh
-            ././vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265,postproc]:x64-linux
+            ./vcpkg install ffmpeg[all-nonfree,iconv,drawtext,fontconfig,amf,ass,fdk-aac,nvcodec,qsv,x264,x265,postproc]:x64-linux
             ls -al ./installed/x64-linux/lib
