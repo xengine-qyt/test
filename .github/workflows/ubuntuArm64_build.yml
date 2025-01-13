@@ -32,4 +32,4 @@ jobs:
             cp -rf ./vcpkg $HOME
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install ffmpeg[gpl,x264,x265,postproc]:arm64-linux-release
+            ./vcpkg install ffmpeg[gpl,postproc]:arm64-linux-release
