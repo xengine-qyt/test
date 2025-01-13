@@ -27,9 +27,11 @@ jobs:
         with:
           repository: microsoft/vcpkg
           path: vcpkg  
+          ref: 2024.12.16
       - name: vcpkg install
         run: |
             cp -rf ./vcpkg $HOME
             cd $HOME/vcpkg
             ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:arm64-linux-release curl[http2]:arm64-linux-release mongo-c-driver:arm64-linux-release libmariadb[openssl]:arm64-linux-release libpq[openssl]:arm64-linux-release zlib:arm64-linux-release minizip:arm64-linux-release sqlite3:arm64-linux-release nghttp2:arm64-linux-release
             ./vcpkg install ffmpeg[gpl,postproc]:arm64-linux-release
