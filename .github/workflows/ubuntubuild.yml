@@ -1,8 +1,8 @@
-name: ubuntu build workflows
+name: ubuntu x86_64 build workflows
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main1" ]
   
 permissions:
   contents: read
