@@ -18,6 +18,8 @@ XHANDLE xhCenterSocket = NULL;
 XHANDLE xhCenterHeart = NULL;
 XHANDLE xhCenterPacket = NULL;
 XHANDLE xhCenterPool = NULL;
+//配置文件
+XENGINE_SERVICECONFIG st_ServiceConfig;
 
 void ServiceApp_Stop(int signo)
 {
@@ -83,16 +85,22 @@ int main(int argc, char** argv)
 #endif
 #endif
 	bIsRun = true;
-	bIsTest = true;
 	int nRet = -1;
 	LPCXSTR lpszLogFile = _X("./XEngine_Log/XEngine_CenterApp.Log");
 	HELPCOMPONENTS_XLOG_CONFIGURE st_XLogConfig;
+	THREADPOOL_PARAMENT** ppSt_ListCenterParam;
 
 	memset(&st_XLogConfig, '\0', sizeof(HELPCOMPONENTS_XLOG_CONFIGURE));
+	memset(&st_ServiceConfig, '\0', sizeof(XENGINE_SERVICECONFIG));
 
 	st_XLogConfig.XLog_MaxBackupFile = 10;
 	st_XLogConfig.XLog_MaxSize = 1024000;
 	_tcsxcpy(st_XLogConfig.tszFileName, lpszLogFile);
+	//初始化参数
+	if (!XEngine_Configure_Parament(argc, argv, &st_ServiceConfig))
+	{
+		return -1;
+	}
 
 	//初始日志
 	xhLog = HelpComponents_XLog_Init(HELPCOMPONENTS_XLOG_OUTTYPE_STD | HELPCOMPONENTS_XLOG_OUTTYPE_FILE, &st_XLogConfig);

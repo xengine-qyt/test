@@ -36,6 +36,8 @@ using namespace std;
 #include <XEngine_Include/XEngine_HelpComponents/DataBase_Error.h>
 //加载项目相关头文件
 #include "../../XEngine_UserProtocol.h"
+#include "../../XEngine_ModuleConfigure/ModuleConfig_Define.h"
+#include "../../XEngine_ModuleConfigure/ModuleConfig_Error.h"
 //加载自己的头文件
 #include "XEngine_Configure.h"
 #include "XEngine_Network.h"
@@ -60,6 +62,8 @@ extern XHANDLE xhCenterSocket;
 extern XHANDLE xhCenterHeart;
 extern XHANDLE xhCenterPacket;
 extern XHANDLE xhCenterPool;
+//配置文件
+extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
 //连接库
 #ifdef _MSC_BUILD
