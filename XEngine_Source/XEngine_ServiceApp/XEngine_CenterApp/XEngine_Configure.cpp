@@ -10,7 +10,7 @@
 //    Purpose:     配置文件读写代码
 //    History:
 *********************************************************************/
-bool XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pSt_Configure)
+bool XEngine_Configure_Parament(int argc, char** argv)
 {
 	LPCXSTR lpszConfigFile = _X("./XEngine_Config/XEngine_CenterConfig.json");
 
@@ -21,10 +21,6 @@ bool XEngine_Configure_Parament(int argc, char** argv, XENGINE_SERVICECONFIG* pS
 		{
 			XEngine_Configure_Help();
 			return false;
-		}
-		else if (0 == _tcsxcmp("-d", argv[i]))
-		{
-			pSt_Configure->bDeamon = _ttxoi(argv[i + 1]);
 		}
 		else if (0 == _tcsxcmp("-t", argv[i]))
 		{
