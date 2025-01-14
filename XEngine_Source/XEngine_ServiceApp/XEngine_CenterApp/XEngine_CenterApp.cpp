@@ -153,8 +153,6 @@ int main(int argc, char** argv)
 		if (NULL == xhCenterSocket)
 		{
 		}
-		XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("启动服务中,启动业务网络服务器成功,业务端口:%d,网络IO线程个数:%d"), st_ServiceConfig.nPort, st_ServiceConfig.st_XMax.nIOThread);
-		//绑定网络事件
 	}
 	else
 	{
