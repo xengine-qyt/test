@@ -50,7 +50,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Build Solution
-        run: msbuild XEngine_Source/ConsoleApplication1.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
+        run: msbuild XEngine_Source/XEngine.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
 
       - name: Conditional Step for x86 Release
         if: matrix.configuration == 'Release' && matrix.platform == 'x86'
@@ -60,7 +60,7 @@ jobs:
           cp -r XEngine_Source/VSCopy_x86.bat XEngine_Release/
           cd XEngine_Release
           ./VSCopy_x86.bat
-          ./ConsoleApplication1.exe -t
+          ./XEngine_SimpleApp.exe -t
         shell: pwsh
       - name: Conditional Step for x64 Release
         if: matrix.configuration == 'Release' && matrix.platform == 'x64'
@@ -70,5 +70,5 @@ jobs:
           cp -r XEngine_Source/VSCopy_x64.bat XEngine_Release/
           cd XEngine_Release
           ./VSCopy_x64.bat
-          ./ConsoleApplication1.exe -t
+          ./XEngine_SimpleApp.exe -t
         shell: pwsh
