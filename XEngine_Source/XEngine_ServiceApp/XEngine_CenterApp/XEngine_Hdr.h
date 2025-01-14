@@ -67,6 +67,19 @@ extern XENGINE_SERVICECONFIG st_ServiceConfig;
 
 //连接库
 #ifdef _MSC_BUILD
+#ifdef _WIN64
+#ifdef _DEBUG
+#pragma comment(lib,"../../x64/Debug/XEngine_ModuleConfigure.lib")
+#else
+#pragma comment(lib,"../../x64/Release/XEngine_ModuleConfigure.lib")
+#endif
+#else
+#ifdef _DEBUG
+#pragma comment(lib,"../../Debug/XEngine_ModuleConfigure.lib")
+#else
+#pragma comment(lib,"../../Release/XEngine_ModuleConfigure.lib")
+#endif
+#endif
 #pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib.lib")
 #pragma comment(lib,"XEngine_Core/XEngine_Core.lib")
 #pragma comment(lib,"XEngine_Core/XEngine_ManagePool.lib")
