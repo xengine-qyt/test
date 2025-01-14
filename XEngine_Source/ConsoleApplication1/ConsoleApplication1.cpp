@@ -6,7 +6,7 @@
 #include <XEngine_Include/XEngine_BaseLib/BaseLib_Define.h>
 #include <XEngine_Include/XEngine_BaseLib/BaseLib_Error.h>
 
-
+#pragma comment(lib,"XEngine_BaseLib/XEngine_BaseLib")
 int main()
 {
     printf("123\n");
