@@ -61,6 +61,7 @@ jobs:
           cd XEngine_Release
           ./VSCopy_x86.bat
           ./XEngine_SimpleApp.exe -t
+          ./XEngine_CenterApp.exe -t
         shell: pwsh
       - name: Conditional Step for x64 Release
         if: matrix.configuration == 'Release' && matrix.platform == 'x64'
@@ -71,4 +72,5 @@ jobs:
           cd XEngine_Release
           ./VSCopy_x64.bat
           ./XEngine_SimpleApp.exe -t
+          ./XEngine_CenterApp.exe -t
         shell: pwsh
