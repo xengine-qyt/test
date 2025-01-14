@@ -7,20 +7,28 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: arm64v8/ubuntu
+    strategy:
+      matrix:
+        runtime: [ linux-arm64, win-arm64 ]
+        include:
+        - runtime: linux-arm64
+          os: ubuntu-latest
+
+        - runtime: win-arm64
+          os: windows-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Checkout main repository code
-      uses: actions/checkout@v4
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
         
-    - name: Run commands
-      run: |
-        uname -a
-        cat /etc/os-release
-        
-    - name: install library
-      run: |
-        chmod 777 ./XEngine_BuildMake.sh
-        sudo ./XEngine_BuildMake.sh
+      - name: Run commands
+        run: |
+          uname -a
+          cat /etc/os-release
+          
+      - name: install library
+        run: |
+         chmod 777 ./XEngine_BuildMake.sh
+         sudo ./XEngine_BuildMake.sh
