@@ -60,6 +60,7 @@ jobs:
           cp -r XEngine_Source/VSCopy_x86.bat XEngine_Release/
           cd XEngine_Release
           ./VSCopy_x86.bat
+          ls
           ./XEngine_SimpleApp.exe -t
           ./XEngine_CenterApp.exe -t
         shell: pwsh
@@ -71,6 +72,7 @@ jobs:
           cp -r XEngine_Source/VSCopy_x64.bat XEngine_Release/
           cd XEngine_Release
           ./VSCopy_x64.bat
+          ls
           ./XEngine_SimpleApp.exe -t
           ./XEngine_CenterApp.exe -t
         shell: pwsh
