@@ -71,6 +71,7 @@ int main(int argc, char** argv)
 	//绑定网络事件
 	NetCore_UDPXCore_RegisterCallBackEx(xhUDPSocket, Network_Callback_SimpleUDPRecv);
 
+	printf("start is completed\n");
 	while (true)
 	{
 		if (bIsTest)

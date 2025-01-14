@@ -83,17 +83,6 @@ bool XEngine_CenterTask_Handle(XENGINE_PROTOCOLHDR* pSt_ProtocolHdr, LPCXSTR lps
 			//设置相应协议头
 			pSt_ProtocolHdr->byIsReply = false;
 			pSt_ProtocolHdr->unOperatorCode = XENGINE_COMMUNICATION_PROTOCOL_OPERATOR_CODE_MSG_TEXTREP;
-			//首先解析协议
-			if (!ModuleProtocol_Parse_Hello(tszRVBuffer, &nRVLen, lpszMsgBuffer, nMsgLen))
-			{
-				ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr, -1, _X("protocol is error"));
-				XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
-				//回复完毕打印客户端发送的数据
-				XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,发送普通包,大小:%d,内容:%s"), lpszClientAddr, nMsgLen, lpszMsgBuffer);
-			}
-			//相应一个处理成功的包给客户端
-			ModuleProtocol_Packet_Comm(tszSDBuffer, &nSDLen, pSt_ProtocolHdr);
-			//发送业务包
 			XEngine_Network_Send(lpszClientAddr, tszSDBuffer, nSDLen);
 			//回复完毕打印客户端发送的数据
 			XLOG_PRINT(xhLog, XENGINE_HELPCOMPONENTS_XLOG_IN_LOGLEVEL_INFO, _X("业务客户端:%s,发送普通包,大小:%d"), lpszClientAddr, nSDLen);
