@@ -150,9 +150,7 @@ int main(int argc, char** argv)
 		}
 		//启动网络
 		xhCenterSocket = NetCore_TCPXCore_StartEx(st_ServiceConfig.nPort, st_ServiceConfig.st_XMax.nMaxClient, st_ServiceConfig.st_XMax.nIOThread);
-		if (NULL == xhCenterSocket)
-		{
-		}
+		
 	}
 	else
 	{
