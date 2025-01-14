@@ -126,10 +126,10 @@ int main()
 #endif
 
 	test_tcpxcore();
-
+	printf("ok\n");
 	NetCore_TCPXCore_DestroyEx(xhTCPCore);
 #ifdef _MSC_BUILD
 	WSACleanup();
 #endif
-	return 1;
+	return 0;
 }
