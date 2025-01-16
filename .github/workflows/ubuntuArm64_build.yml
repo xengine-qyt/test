@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     env:
-      IMAGE_NAME: ubuntu-24.04
+      IMAGE_NAME: ubuntu:24.04
 
     strategy:
       fail-fast: false
