@@ -31,5 +31,6 @@ jobs:
             -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
             set -e
             apt update
+            cd XEngine_Source
             chmod 777 ./XEngine_BuildMake.sh
             ./XEngine_BuildMake.sh '
