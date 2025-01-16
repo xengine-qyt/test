@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      IMAGE_NAME: ubuntu-24.04
 
     strategy:
       fail-fast: false
@@ -26,7 +28,7 @@ jobs:
         run: |
           docker run --platform ${{ matrix.arch }} --rm \
             -v ${{ github.workspace }}:/workspace \
-            -w /workspace
+            -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
             set -e
             apt update
             chmod 777 ./XEngine_BuildMake.sh
