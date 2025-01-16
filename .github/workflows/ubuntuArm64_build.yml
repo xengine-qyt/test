@@ -3,29 +3,31 @@ name: ubuntu Arm64 build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
+
 
 jobs:
   build:
-    strategy:
-      matrix:
-        runtime: [ linux-arm64 ]
-        include:
-        - runtime: linux-arm64
-          os: ubuntu-latest
+    runs-on: ubuntu-24.04
 
-    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [linux/amd64]
 
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v4
-        
-      - name: Run commands
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Build ${{ matrix.arch }}
         run: |
-          uname -a
-          cat /etc/os-release
-          
-      - name: install library
-        run: |
-         chmod 777 ./XEngine_BuildMake.sh
-         sudo ./XEngine_BuildMake.sh
+          docker run --platform ${{ matrix.arch }} --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace
+            set -e
+            apt update
+            chmod 777 ./XEngine_BuildMake.sh
+            ./XEngine_BuildMake.sh
