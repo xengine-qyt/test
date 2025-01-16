@@ -174,7 +174,7 @@ function InstallEnv_CheckIns()
 		fi
 
 		echo -e "\033[35mdeb开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
-		sudo apt install $m_EnvAPT -y
+		apt install $m_EnvAPT -y
 		echo -e "\033[36mdeb依赖库安装完毕\033[0m"
 		if [ "$VERSION_ID" == "22.04" ]; then
 			if [ ! -e /usr/local/ffmpeg-xengine/bin/ffmpeg ]; then
@@ -189,7 +189,7 @@ function InstallEnv_CheckIns()
 				make
 				make install
 				make clean
-				sudo ldconfig
+				ldconfig
 			fi
 		fi
 	fi
