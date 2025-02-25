@@ -30,7 +30,6 @@ jobs:
             -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
             set -e
             dnf update -y
-            dnf groupinstall -y "Development Tools"
             cd XEngine_Source
             chmod 777 ./XEngine_BuildMake.sh
             ./XEngine_BuildMake.sh '

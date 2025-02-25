@@ -1,0 +1,39 @@
+name: Windows Arm64 build workflows
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
+      - name: Set MSVC Build
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: arm64
+
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg
+
+      - name: vcpkg install 
+        run: |
+            cd vcpkg
+            ./bootstrap-vcpkg.bat
+            .\vcpkg.exe install libiconv:x86-windows-static-md curl[http2]:x86-windows-static-md mongo-c-driver[openssl]:x86-windows-static-md libmariadb[core,openssl]:x86-windows-static-md libpq[openssl]:x86-windows-static-md zlib:x86-windows-static-md minizip:x86-windows-static-md sqlite3:x86-windows-static-md nghttp2:x86-windows-static-md --clean-after-build
+            ./vcpkg.exe integrate install
+        shell: pwsh
+
+      - name: Build Solution
+        run: |
+            cd xengine
+            msbuild XEngine_SourceCode/XEngine.sln /p:Configuration=Release
+        shell: pwsh
