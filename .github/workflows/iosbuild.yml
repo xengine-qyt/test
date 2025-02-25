@@ -34,17 +34,6 @@ jobs:
             brew install cmake ninja pkg-config autoconf nasm
             cd vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios' 2>&1 | tee /tmp/vcpkg_install.log
-            cat /tmp/vcpkg_install.log
-
-      - name: Upload vcpkg install log
-        uses: actions/upload-artifact@v4
-        with:
-          name: vcpkg_logs
-          path: |
-            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-CMakeCache.txt.log
-            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-CMakeConfigureLog.yaml.log
-            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-out.log
-            /Users/runner/work/test/test/vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-err.log
+            ./vcpkg install 'mongo-c-driver:arm64-ios'
 
           

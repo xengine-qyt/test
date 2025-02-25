@@ -1,0 +1,36 @@
+name: Rocky Linux 9.5 Arm64 build workflows
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      IMAGE_NAME: rockylinux/rockylinux:9.5
+
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [linux/arm64]
+
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Build ${{ matrix.arch }}
+        run: |
+          docker run --platform ${{ matrix.arch }} --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace ${{ env.IMAGE_NAME }} /bin/sh -c '
+            set -e
+            dnf update
+            dnf groupinstall -y "Development Tools"
+            cd XEngine_Source
+            chmod 777 ./XEngine_BuildMake.sh
+            ./XEngine_BuildMake.sh '
