@@ -28,12 +28,6 @@ jobs:
         run: |
             cd vcpkg
             ./bootstrap-vcpkg.bat
-            .\vcpkg.exe install libiconv:arm64-windows-static-md curl[http2]:arm64-windows-static-md mongo-c-driver[openssl]:arm64-windows-static-md libmariadb[core,openssl]:arm64-windows-static-md libpq[openssl]:arm64-windows-static-md zlib:arm64-windows-static-md minizip:arm64-windows-static-md sqlite3:arm64-windows-static-md nghttp2:arm64-windows-static-md --clean-after-build
+            .\vcpkg.exe install libiconv:arm64-windows-static-md curl[http2]:arm64-windows-static-md mongo-c-driver[openssl]:arm64-windows-static-md libmariadb[core,openssl]:arm64-windows-static-md libpq[openssl]:arm64-windows-static-md zlib:arm64-windows-static-md minizip:arm64-windows-static-md sqlite3:arm64-windows-static-md nghttp2:arm64-windows-static-md ffmpeg[all]:arm64-windows-static-md --clean-after-build
             ./vcpkg.exe integrate install
-        shell: pwsh
-
-      - name: Build Solution
-        run: |
-            cd xengine
-            msbuild XEngine_SourceCode/XEngine.sln /p:Configuration=Release
         shell: pwsh

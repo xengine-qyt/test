@@ -3,7 +3,7 @@ name: Rocky Linux 9.5 Arm64 build workflows
 on:
   push:
     branches: 
-      - main
+      - main1
 
 jobs:
   build:
