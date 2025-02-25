@@ -28,7 +28,7 @@ jobs:
         run: |
             cd vcpkg
             ./bootstrap-vcpkg.bat
-            .\vcpkg.exe install libiconv:x86-windows-static-md curl[http2]:x86-windows-static-md mongo-c-driver[openssl]:x86-windows-static-md libmariadb[core,openssl]:x86-windows-static-md libpq[openssl]:x86-windows-static-md zlib:x86-windows-static-md minizip:x86-windows-static-md sqlite3:x86-windows-static-md nghttp2:x86-windows-static-md --clean-after-build
+            .\vcpkg.exe install libiconv:arm64-windows-static-md curl[http2]:arm64-windows-static-md mongo-c-driver[openssl]:arm64-windows-static-md libmariadb[core,openssl]:arm64-windows-static-md libpq[openssl]:arm64-windows-static-md zlib:arm64-windows-static-md minizip:arm64-windows-static-md sqlite3:arm64-windows-static-md nghttp2:arm64-windows-static-md --clean-after-build
             ./vcpkg.exe integrate install
         shell: pwsh
 

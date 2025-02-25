@@ -31,5 +31,5 @@ jobs:
             set -e
             dnf update -y
             cd XEngine_Source
-            chmod 777 ./XEngine_BuildMake.sh
-            ./XEngine_BuildMake.sh '
+            chmod 777 ./XEngine_LINEnv.sh
+            ./XEngine_LINEnv.sh '
