@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
 m_EnvTimer=$(date)
+m_EnvArch=$(uname --machine)
 m_EnvCurrent=0
 m_EnvExecName=$(whoami)
 m_EnvInstall=1
@@ -21,7 +22,7 @@ function InstallEnv_Print()
 	echo -e "\033[33m                       运行环境：Linux Mac x64                                \033[0m"
 	echo -e "\033[33m                       脚本版本：Ver 9.11.0.1001                              \033[0m"
 	echo -e "\033[32m|***************************************************************************|\033[0m"
-	echo -e "\033[44;37m当前时间：$m_EnvTimer 执行用户：$m_EnvExecName 你的环境：$m_EnvCurrent\033[0m"
+	echo -e "当前时间：$m_EnvTimer 执行用户：$m_EnvExecName 你的环境：$m_EnvCurrent 你的架构:$m_EnvArch"
 }
 
 #安装条件

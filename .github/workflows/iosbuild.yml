@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
