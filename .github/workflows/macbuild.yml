@@ -30,14 +30,14 @@ jobs:
       - name: install library
         if: matrix.os == 'macos-13'  
         run: |
-            brew install mongo-c-driver
+            brew install mongo-c-driver@2
             ls -al /usr/local/opt
-            ls -al /usr/local/opt/mongo-c-driver
-            ls -al /usr/local/opt/mongo-c-driver/include
+            echo -e "==========="
+            ls -al /opt/homebrew/opt/mongo-c-driver@2/include
       - name: install library
         if: matrix.os == 'macos-14'  
         run: |
-            brew install mongo-c-driver
+            brew install mongo-c-driver@2
             ls -al /opt/homebrew/opt
-            ls -al /opt/homebrew/opt/mongo-c-driver
-            ls -al /opt/homebrew/opt/mongo-c-driver/include
+            echo -e "==========="
+            ls -al /opt/homebrew/opt/mongo-c-driver@2/include
