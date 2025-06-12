@@ -31,21 +31,15 @@ jobs:
       - name: install library
         if: matrix.os == 'macos-13'  
         run: |
-            brew install mongo-c-driver@1
-            ls -al /usr/local/opt
-            echo -e "==========="
-            ls -al /opt/local/opt/mongo-c-driver@1/include
+            cd XEngine_Source
+            ./XEngine_LINEnv.sh -i 3
       - name: install library
         if: matrix.os == 'macos-14'  
         run: |
-            brew install mongo-c-driver@1
-            ls -al /opt/homebrew/opt
-            echo -e "==========="
-            ls -al /opt/homebrew/opt/mongo-c-driver@1/include
+            cd XEngine_Source
+            ./XEngine_LINEnv.sh -i 3
       - name: install library
         if: matrix.os == 'macos-15'  
         run: |
-            brew install mongo-c-driver@1
-            ls -al /opt/homebrew/opt
-            echo -e "==========="
-            ls -al /opt/homebrew/opt/mongo-c-driver@1/include
+            cd XEngine_Source
+            ./XEngine_LINEnv.sh -i 3
