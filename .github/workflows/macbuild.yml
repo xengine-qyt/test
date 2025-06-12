@@ -5,9 +5,6 @@ on:
     branches: 
       - main
   
-permissions:
-  contents: read
-  
 jobs:
   build:
     strategy:
@@ -19,30 +16,28 @@ jobs:
     runs-on: ${{ matrix.os }}
     
     steps:
-      - name: Checkout main repository code
+      - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
+        with:
+          repository: libxengine/libxengine
+          path: libxengine
+
+      - name: sub module checkout (opensource)
+        run: |
+            git submodule init
+            git submodule update
 
       - name: Set TERM variable
-        run: echo "TERM=xterm" >> $GITHUB_ENV
-            
-      - name: install library
-        if: matrix.os == 'macos-13'  
+        run: echo "TERM=xterm" >> $GITHUB_ENV   
+                 
+      - name: Set up Dependency x86_64 Environment 
+        if: matrix.os == 'macos-13'
         run: |
-            cd XEngine_Source
-            chmod 777 ./XEngine_LINEnv.sh
-            ./XEngine_LINEnv.sh -i 3
-      - name: install library
-        if: matrix.os == 'macos-14'  
-        run: |
-            latest_tag=$(git ls-remote --tags --sort="v:refname" https://github.com/libxengine/libxengine.git | awk '{print $2}' | sed 's/refs\/tags\///' | tail -n 1)
-            wget https://github.com/libxengine/libxengine/releases/download/$latest_tag/XEngine_Mac_Arm64.zip
-            unzip ./XEngine_Mac_Arm64.zip -d ./XEngine_Mac_Arm64
-            cd XEngine_Mac_Arm64
-
+            cd libxengine
             chmod 777 *
             ./XEngine_LINEnv.sh -i 3
-      - name: install library
-        if: matrix.os == 'macos-15'  
+      - name: Set up Dependency Arm64 Environment 
+        if: matrix.os == 'macos-14' || matrix.os == 'macos-15'
         run: |
             latest_tag=$(git ls-remote --tags --sort="v:refname" https://github.com/libxengine/libxengine.git | awk '{print $2}' | sed 's/refs\/tags\///' | tail -n 1)
             wget https://github.com/libxengine/libxengine/releases/download/$latest_tag/XEngine_Mac_Arm64.zip
