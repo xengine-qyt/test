@@ -16,6 +16,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     
     steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
