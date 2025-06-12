@@ -18,16 +18,24 @@ jobs:
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v4
-
+          
       - name: Checkout dependency repository (xengine)
         uses: actions/checkout@v4
         with:
           repository: libxengine/libxengine
           path: libxengine
 
+      - name: sub module checkout (opensource)
+        run: |
+            git submodule init
+            git submodule update
+
       - name: Set TERM variable
         run: echo "TERM=xterm" >> $GITHUB_ENV   
-                 
+
+      - name: brew install
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
       - name: Set up Dependency x86_64 Environment 
         if: matrix.os == 'macos-13'
         run: |
