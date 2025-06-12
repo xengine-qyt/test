@@ -15,6 +15,7 @@ jobs:
         include:
           - os: macos-13
           - os: macos-14
+          - os: macos-15
     runs-on: ${{ matrix.os }}
     
     steps:
@@ -33,9 +34,16 @@ jobs:
             brew install mongo-c-driver@1
             ls -al /usr/local/opt
             echo -e "==========="
-            ls -al /opt/homebrew/opt/mongo-c-driver@1/include
+            ls -al /opt/local/opt/mongo-c-driver@1/include
       - name: install library
         if: matrix.os == 'macos-14'  
+        run: |
+            brew install mongo-c-driver@1
+            ls -al /opt/homebrew/opt
+            echo -e "==========="
+            ls -al /opt/homebrew/opt/mongo-c-driver@1/include
+      - name: install library
+        if: matrix.os == 'macos-15'  
         run: |
             brew install mongo-c-driver@1
             ls -al /opt/homebrew/opt
