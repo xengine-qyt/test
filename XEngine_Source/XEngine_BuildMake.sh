@@ -117,6 +117,7 @@ function InstallEnv_Checkepel()
 			dnf config-manager --set-enabled crb
 			dnf groupinstall "Development Tools"
 			dnf repolist --all
+			dnf search mysql
 			echo -e "\033[36mrpmfusion 安装完毕\033[0m"
 		else
 			echo -e "\033[36mrpmfusion 扩展源存在。。。\033[0m"
