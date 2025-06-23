@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ${{ matrix.runner }}
     container:
-      image: rockylinux/rockylinux:9
+      image: rockylinux/rockylinux:${{ matrix.os_version }}
       options: --platform ${{ matrix.platform }}
     strategy:
       matrix:
@@ -21,10 +21,13 @@ jobs:
             runner: ubuntu-24.04
             platform: linux/amd64
             artifact: x86-64
+            os_version: 9
           - arch: arm64
-            runner: ubuntu-24.04-arm 
+            # runner: ubuntu-24.04-arm ,not release
+            runner: ubuntu-24.04
             platform: linux/arm64
             artifact: Arm64
+            os_version: 10
 
     steps:
       - name: Checkout main repository code
