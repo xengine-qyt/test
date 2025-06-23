@@ -1,0 +1,38 @@
+name: rocky build workflows
+
+on:
+  push:
+    branches:
+      - 'main'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ${{ matrix.runner }}
+    container:
+      image: rockylinux/rockylinux:9
+      options: --platform ${{ matrix.platform }}
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+            platform: linux/amd64
+            artifact: x86-64
+          - arch: arm64
+            runner: ubuntu-24.04-arm 
+            platform: linux/arm64
+            artifact: Arm64
+
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
+      - name: Set TERM variable
+        run: echo "TERM=xterm" >> $GITHUB_ENV
+        
+      - name: install system package
+        run: |
+            cat /etc/os-release
