@@ -112,12 +112,9 @@ function InstallEnv_Checkepel()
 		if test -z `rpm -qa | grep $rpmfusion`
 		then 
 			echo -e "\033[35m不存在rpmfusion扩展源，将开始安装。。。\033[0m"
-			dnf repolist --all
 			dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 			dnf config-manager --set-enabled crb
 			dnf groupinstall "Development Tools"
-			dnf repolist --all
-			dnf search mysql
 			echo -e "\033[36mrpmfusion 安装完毕\033[0m"
 		else
 			echo -e "\033[36mrpmfusion 扩展源存在。。。\033[0m"
@@ -150,7 +147,7 @@ function InstallEnv_Checkepel()
 #开始安装依赖库
 function InstallEnv_CheckIns()
 {
-	VERSION_ID=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2)
+	VERSION_ID=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2 | cut -d '.' -f 1)
 	echo -e "version is: $VERSION_ID"
 	#Centos
 	if [ "$m_EnvRelease" -eq "1" ] ; then
@@ -208,11 +205,11 @@ function InstallEnv_CheckIns()
 	if [ "$m_EnvRelease" -eq "10" ] ; then
 		m_EnvAPT+=" gcc make wget nasm libchromaprint-dev libmysofa-dev libcodec2-dev libdrm-dev libdc1394-dev librabbitmq-dev libczmq-dev libgnutls28-dev libopenal-dev libopenjp2-7-dev libxml2-dev frei0r-plugins-dev libbs2b-dev libbluray-dev lv2-dev liblilv-dev libzvbi-dev libwebp-dev libvpx-dev libvorbis-dev libtheora-dev libspeex-dev libsoxr-dev libmodplug-dev libass-dev libx264-dev libx265-dev libfreetype-dev libfribidi-dev libharfbuzz-dev libgmp-dev libmp3lame-dev libopus-dev libxvidcore-dev libsdl2-dev libzip-dev"
 		# 判断 Ubuntu 版本号
-		if [ "$VERSION_ID" == "20.04" ]; then
+		if [ "$VERSION_ID" == "20" ]; then
 			m_EnvAPT+=" libmysqlclient-dev libfdk-aac-dev libsrt-dev libfontconfig1-dev"
-		elif [ "$VERSION_ID" == "22.04" ]; then
+		elif [ "$VERSION_ID" == "22" ]; then
     		m_EnvAPT+=" libmysqlclient-dev libfdk-aac-dev libzimg-dev libplacebo-dev libdav1d-dev libaom-dev libfontconfig-dev libgme-dev"
-		elif [ "$VERSION_ID" == "24.04" ]; then
+		elif [ "$VERSION_ID" == "24" ]; then
 			# no arm64 libvpl-dev 
     		m_EnvAPT+=" libmysqlclient-dev libfdk-aac-dev libsnappy-dev libopenmpt-dev libcdio-dev libjxl-dev libiec61883-dev libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libswresample-dev libswscale-dev libffmpeg-nvenc-dev"
 		else
@@ -223,7 +220,7 @@ function InstallEnv_CheckIns()
 		echo -e "\033[35mubuntu开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
 		apt install $m_EnvAPT -y
 		echo -e "\033[36mubuntu依赖库安装完毕\033[0m"
-		if [ "$VERSION_ID" == "22.04" ] || [ "$VERSION_ID" == "20.04" ]; then
+		if [ "$VERSION_ID" == "22" ] || [ "$VERSION_ID" == "20" ]; then
 			if [ ! -e /usr/local/ffmpeg-xengine/bin/ffmpeg ]; then
 				# 安装ffmpeg
 				echo -e "\033[35mFFMpeg没有被安装,开始安装FFMpeg库\033[0m"
@@ -255,9 +252,9 @@ function InstallEnv_CheckIns()
 				m_EvnBuildCmd+=" --enable-filter=drawtext"
 				# 附加信息
 				m_EvnBuildCmd+=" --extra-ldflags="-Wl,-rpath=/usr/local/ffmpeg-xengine/lib""
-				if [ "$VERSION_ID" == "20.04" ]; then
+				if [ "$VERSION_ID" == "20" ]; then
 					m_EvnBuildCmd+="  --enable-libfdk-aac --enable-libsrt"
-				elif [ "$VERSION_ID" == "22.04" ] || [ "$VERSION_ID" == "24.04" ]; then
+				elif [ "$VERSION_ID" == "22" ] || [ "$VERSION_ID" == "24" ]; then
 					# 图像
 					m_EvnBuildCmd+=""
 					# 音频
@@ -274,7 +271,7 @@ function InstallEnv_CheckIns()
 					# 三方库
 					# 附加处理
 					# 附加信息
-					if [ "$VERSION_ID" == "24.04" ]; then
+					if [ "$VERSION_ID" == "24" ]; then
 						# 图像
 						m_EvnBuildCmd+=" --enable-libjxl"
 						# 音频
