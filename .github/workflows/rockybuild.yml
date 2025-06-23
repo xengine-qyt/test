@@ -47,4 +47,6 @@ jobs:
         
       - name: install system package
         run: |
-            cat /etc/os-release
+            cd XEngine_Source
+            chmod 777 XEngine_BuildMake.sh
+            ./XEngine_BuildMake.sh
