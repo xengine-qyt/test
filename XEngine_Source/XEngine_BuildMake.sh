@@ -10,7 +10,7 @@ m_EvnFileClear=0
 m_EnvAuthBreak=0
 m_EnvRelease=0
 m_EvnBuildCmd=0
-m_EnvRPM='git gcc-c++ gdb make wget openssl-devel libcurl-devel mysql-devel zlib-devel minizip-devel mongo-c-driver-devel libpq-devel libsqlite3x-devel libnghttp2-devel'
+m_EnvRPM='git gcc-c++ gdb make wget openssl-devel libcurl-devel zlib-devel minizip-devel mongo-c-driver-devel libpq-devel libsqlite3x-devel libnghttp2-devel'
 m_EnvAPT='git gcc g++ gdb make libcurl4-openssl-dev libssl-dev zlib1g-dev libminizip-dev libmongoc-dev libbson-dev libpq-dev libsqlite3-dev libnghttp2-dev build-essential manpages-dev net-tools'
 m_EnvMAC='curl openssl@3 sqlite zlib minizip mongo-c-driver@1 mysql-client@8.0 libpq libnghttp2 ffmpeg@7'
 
@@ -151,11 +151,20 @@ function InstallEnv_Checkepel()
 function InstallEnv_CheckIns()
 {
 	VERSION_ID=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2)
-	echo -e "version is: $VERSION"
+	echo -e "version is: $VERSION_ID"
 	#Centos
 	if [ "$m_EnvRelease" -eq "1" ] ; then
 		echo -e "\033[35mrocky开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
-		dnf install --allowerasing $m_EnvRPM -y
+		if [ "$VERSION_ID" == "9" ] ; then
+			$m_EnvRPM+=" mysql-devel"
+			dnf install --allowerasing $m_EnvRPM -y
+		else
+			$m_EnvRPM+=" mysql8.4-devel"
+			dnf install --allowerasing $m_EnvRPM -y
+			ls -al /usr/include/
+			ls -al /usr/include/mysql
+		fi
+		
 		echo -e "\033[36mrocky依赖库安装完毕\033[0m"
 		if [ ! -e /usr/local/ffmpeg-xengine/bin/ffmpeg ] && [ "$VERSION_ID" == "9" ]; then
 			#lost libfdk-aac-devel libxvid chromaprint libiec61883 libcodec2 libdc1394 libvpl libdrm libmysofa libopenjpeg libplacebo librabbitmq czmq zimg libcdio libgme
@@ -352,6 +361,7 @@ function InstallEnv_CheckIns()
 	#fedora
 	if [ "$m_EnvRelease" -eq "2" ] ; then
 		echo -e "\033[35mfedora开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
+		$m_EnvRPM+=" mysql-devel"
 		dnf install $m_EnvRPM -y
 		dnf install ffmpeg-free-devel -y
 		echo -e "\033[36mdeb依赖库安装完毕\033[0m"
