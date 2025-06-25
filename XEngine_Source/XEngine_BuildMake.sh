@@ -140,18 +140,12 @@ function InstallEnv_Checkepel()
 			echo -e "\033[33mDebian不需要扩展源。。。\033[0m"
 		fi
 	elif [ "$m_EnvRelease" -eq "20" ] ; then 
-		if [ "$m_CMDBrew" -eq "1" ] ; then
-			echo -e "\033[34mMacos检查是否安装brew。。。\033[0m"
-			if command -v brew >/dev/null 2>&1; then
-   				echo -e "\033[36mbrew 已安装\033[0m"
-			else
-				echo -e "\033[35mbrew 未安装,开始安装brew。。。\033[0m"
-				/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-			fi
+		if command -v brew >/dev/null 2>&1 ; then
+   			echo -e "\033[36mbrew 已安装\033[0m"
 		else
-			echo -e "\033[36mBrew配置为用户自己安装。。。\033[0m"
+			echo -e "\033[35mbrew 未安装,开始安装brew。。。\033[0m"
+			/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		fi
-		brew update
 	fi
 } 
 #开始安装依赖库
