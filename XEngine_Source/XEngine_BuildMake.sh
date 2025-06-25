@@ -113,8 +113,7 @@ function InstallEnv_Checkepel()
 		then 
 			echo -e "\033[35m不存在rpmfusion扩展源，将开始安装。。。\033[0m"
 			dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
-			dnf config-manager --set-enabled crb
-			dnf groupinstall "Development Tools"
+			dnf config-manager --enable crb
 			echo -e "\033[36mrpmfusion 安装完毕\033[0m"
 		else
 			echo -e "\033[36mrpmfusion 扩展源存在。。。\033[0m"
@@ -141,25 +140,36 @@ function InstallEnv_Checkepel()
 			echo -e "\033[33mDebian不需要扩展源。。。\033[0m"
 		fi
 	elif [ "$m_EnvRelease" -eq "20" ] ; then 
-		echo -e "\033[36mBrew配置为用户自己安装。。。\033[0m"
+		if [ "$m_CMDBrew" -eq "1" ] ; then
+			echo -e "\033[34mMacos检查是否安装brew。。。\033[0m"
+			if command -v brew >/dev/null 2>&1; then
+   				echo -e "\033[36mbrew 已安装\033[0m"
+			else
+				echo -e "\033[35mbrew 未安装,开始安装brew。。。\033[0m"
+				/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+			fi
+		else
+			echo -e "\033[36mBrew配置为用户自己安装。。。\033[0m"
+		fi
+		brew update
 	fi
 } 
 #开始安装依赖库
 function InstallEnv_CheckIns()
 {
 	VERSION_ID=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2 | cut -d '.' -f 1)
-	echo -e "version is: $VERSION_ID"
 	#Centos
 	if [ "$m_EnvRelease" -eq "1" ] ; then
 		echo -e "\033[35mrocky开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
 		if [ "$VERSION_ID" == "9" ] ; then
-			$m_EnvRPM+=" mysql-devel"
+			m_EnvRPM+=" mysql-devel"
+			dnf install --allowerasing $m_EnvRPM -y
+		elif [ "$VERSION_ID" == "10" ]; then
+			m_EnvRPM+=" mysql8.4-devel ffmpeg-devel"
 			dnf install --allowerasing $m_EnvRPM -y
 		else
-			$m_EnvRPM+=" mysql8.4-devel"
-			dnf install --allowerasing $m_EnvRPM -y
-			ls -al /usr/include/
-			ls -al /usr/include/mysql
+			echo -e "\033[31mThis script only supports Rockylinux 9 and 10.\033[0m"
+			exit 1
 		fi
 		
 		echo -e "\033[36mrocky依赖库安装完毕\033[0m"
@@ -358,9 +368,8 @@ function InstallEnv_CheckIns()
 	#fedora
 	if [ "$m_EnvRelease" -eq "2" ] ; then
 		echo -e "\033[35mfedora开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
-		$m_EnvRPM+=" mysql-devel"
+		m_EnvRPM+=" mysql-devel ffmpeg-free-devel"
 		dnf install $m_EnvRPM -y
-		dnf install ffmpeg-free-devel -y
 		echo -e "\033[36mdeb依赖库安装完毕\033[0m"
 	fi
 	#Macos
@@ -375,6 +384,6 @@ InstallEnv_CheckEnv
 InstallEnv_Print 
 InstallEnv_CheckRoot
 InstallEnv_Checkepel
-InstallEnv_CheckIns
+InstallEnv_Checkepel
 
 echo -e "\033[92m开发环境完毕。。。done...\033[0m"
