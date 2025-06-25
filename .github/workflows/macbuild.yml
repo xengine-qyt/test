@@ -27,6 +27,6 @@ jobs:
             
       - name: install library
         run: |
-            cd XEngine_SourceCode
+            cd XEngine_Source
             chmod 777 ./XEngine_BuildMake.sh
             ./XEngine_BuildMake.sh
