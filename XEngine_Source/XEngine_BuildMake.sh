@@ -146,6 +146,7 @@ function InstallEnv_Checkepel()
 			echo -e "\033[35mbrew 未安装,开始安装brew。。。\033[0m"
 			/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		fi
+		brew update
 	fi
 } 
 #开始安装依赖库
