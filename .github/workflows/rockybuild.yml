@@ -47,7 +47,9 @@ jobs:
         
       - name: install system package
         run: |
+            cat /etc/os-release
             dnf update -y
+            cat /etc/os-release
             dnf install gcc g++ make git jq unzip wget -y
 
       - name: install xengine package
