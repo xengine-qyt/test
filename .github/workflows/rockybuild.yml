@@ -32,4 +32,7 @@ jobs:
         
       - name: install system package
         run: |
+            dnf clean all
+            dnf makecache
+            dnf update
             dnf install gcc g++ make git jq unzip wget -y
