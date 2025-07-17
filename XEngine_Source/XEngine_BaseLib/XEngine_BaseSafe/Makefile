@@ -1,4 +1,3 @@
-FILEEXT = 
 CPPFLAG = 
 LOADHDR = -I ./
 LOADSO = 
@@ -25,7 +24,6 @@ ifeq ($(PLATFORM),ios)
 all:$(OBJECTS)
 	ar $(LIBFLAG) libXEngine_BaseSafe.$(FILEEXT) $(OBJECTS)
 	xcodebuild -create-xcframework -library libXEngine_BaseSafe.$(FILEEXT) -output libXEngine_BaseSafe.xcframework 
-	FILEEXT = xcframework
 else
 all:$(OBJECTS)
 	$(CC) $(DEBUG) $(OBJECTS) -o libXEngine_BaseSafe.$(FILEEXT) $(LIBFLAG) $(LIB) $(LOADSO) $(LOADBIN)

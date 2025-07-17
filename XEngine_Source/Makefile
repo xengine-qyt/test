@@ -25,7 +25,12 @@ else ifeq ($(PLATFORM), android)
 else ifeq ($(PLATFORM), web)
 
 else ifeq ($(PLATFORM), ios)
-	FILEEXT = a
+	ifeq ($(FLAGS), "")
+		FILEEXT = a
+	else
+		FILEEXT = xcframework
+	endif
+	
 	LIBFLAG = rcs
 	PLATVER = "-D __IOS__"
 	PLATDIR = XEngine_IOS
