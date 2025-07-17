@@ -40,6 +40,7 @@ pch.o:./pch.cpp
 
 install:InstallSo InstallHdr
 InstallSo:./libXEngine_BaseSafe.$(FILEEXT)
+	mkdir -p ../../../XEngine_Release/XEngine_IOS/XEngine_BaseLib/
 	cp -rf ./libXEngine_BaseSafe.$(FILEEXT) ../../../XEngine_Release/$(PLATDIR)/XEngine_BaseLib/libXEngine_BaseSafe.$(FILEEXT)
 
 InstallHdr:./BaseSafe_Define.h ./BaseSafe_Error.h
