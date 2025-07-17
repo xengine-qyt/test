@@ -30,6 +30,8 @@ jobs:
         run: |
             cd XEngine_Source
             make PLATFORM=ios ARCH=arm RELEASE=1
+            make PLATFORM=ios ARCH=arm FLAGS=install
+            make PLATFORM=ios ARCH=arm FLAGS=clean
 
       - name: Upload folder as artifact 
         uses: actions/upload-artifact@v4
