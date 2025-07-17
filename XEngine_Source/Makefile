@@ -25,7 +25,7 @@ else ifeq ($(PLATFORM), android)
 else ifeq ($(PLATFORM), web)
 
 else ifeq ($(PLATFORM), ios)
-	ifeq ($(FLAGS), "")
+	ifeq ($(strip $(FLAGS)),)
 		FILEEXT = a
 	else
 		FILEEXT = xcframework
