@@ -50,5 +50,5 @@ clean:CleanObj CleanMk
 CleanObj:
 	rm *.o                                            
 CleanMk:
-	rm *.$(FILEEXT)                                         
+	rm -rf *.$(FILEEXT)                                         
 	
