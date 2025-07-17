@@ -1,0 +1,10 @@
+LIBRARY
+
+EXPORTS
+	BaseSafe_GetLastError
+
+	BaseSafe_String_Strcopy
+	BaseSafe_String_Strcat
+
+	BaseSafe_Memory_Memcopy
+	BaseSafe_Memory_Memmove

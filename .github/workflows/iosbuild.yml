@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
@@ -27,8 +27,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
-          path: vcpkg              
-          
+          path: vcpkg           
+
+      - name: make ios release
+        run: |
+            cd XEngine_Source
+            make PLATFORM=ios ARCH=arm RELEASE=1
+            make PLATFORM=ios ARCH=arm FLAGS=install
+            make PLATFORM=ios ARCH=arm FLAGS=clean
+            
       - name: vcpkg install
         run: |
             brew install cmake ninja pkg-config autoconf nasm
