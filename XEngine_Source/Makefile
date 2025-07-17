@@ -49,8 +49,7 @@ endif
 BASE_SAFE_PATH = ./XEngine_BaseLib/XEngine_BaseSafe
 
 #编译集合
-XENGINE_MODULE = libXEngien_BaseSafe.so   \
-		InstallComm
+XENGINE_MODULE = libXEngien_BaseSafe.so  
 
 .PHONY:MakeAll 
 MakeAll:$(XENGINE_MODULE)
@@ -58,8 +57,3 @@ MakeAll:$(XENGINE_MODULE)
 libXEngien_BaseSafe.so:
 	make -C $(BASE_SAFE_PATH) CC=$(CC) ARCH=$(ARCH) PLATFORM=$(PLATFORM) PLATVER=$(PLATVER) PLATDIR=$(PLATDIR) CPPFLAG=$(CPPFLAG) DEBUG=$(DEBUG) UNICODE=$(UNICODE) FILEEXT=$(FILEEXT) LIBFLAG=$(LIBFLAG) $(FLAGS)
 
-
-InstallComm:
-	cp -rf ./XEngine_CommHdr.h ../XEngine_Release/XEngine_Include/XEngine_CommHdr.h
-	cp -rf ./XEngine_Types.h ../XEngine_Release/XEngine_Include/XEngine_Types.h
-	cp -rf ./XEngine_ProtocolHdr.h ../XEngine_Release/XEngine_Include/XEngine_ProtocolHdr.h
