@@ -40,7 +40,7 @@ pch.o:./pch.cpp
 
 install:InstallSo InstallHdr
 InstallSo:./libXEngine_BaseSafe.$(FILEEXT)
-	cp ./libXEngine_BaseSafe.$(FILEEXT) ../../../XEngine_Release/$(PLATDIR)/XEngine_BaseLib/libXEngine_BaseSafe.$(FILEEXT)
+	cp -rf ./libXEngine_BaseSafe.$(FILEEXT) ../../../XEngine_Release/$(PLATDIR)/XEngine_BaseLib/libXEngine_BaseSafe.$(FILEEXT)
 
 InstallHdr:./BaseSafe_Define.h ./BaseSafe_Error.h
 	cp ./BaseSafe_Define.h ../../../XEngine_Release/XEngine_Include/XEngine_BaseLib/BaseSafe_Define.h

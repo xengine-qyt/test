@@ -25,11 +25,7 @@ else ifeq ($(PLATFORM), android)
 else ifeq ($(PLATFORM), web)
 
 else ifeq ($(PLATFORM), ios)
-	ifeq ($(strip $(FLAGS)),)
-		FILEEXT = a
-	else
-		FILEEXT = xcframework
-	endif
+	FILEEXT = a
 	
 	LIBFLAG = rcs
 	PLATVER = "-D __IOS__"
