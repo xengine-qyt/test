@@ -28,5 +28,6 @@ jobs:
       - name: install library
         run: |
             cd XEngine_Source
+            chmod 777 ./XEngine_LINEnv.sh
             ./XEngine_LINEnv.sh -i 6
             ./XEngine_LINEnv.sh -i 3
