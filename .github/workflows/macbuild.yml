@@ -3,7 +3,7 @@ name: macos build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
   
 permissions:
   contents: read
@@ -27,6 +27,6 @@ jobs:
             
       - name: install library
         run: |
-            cd XEngine_Source
-            chmod 777 ./XEngine_BuildMake.sh
-            ./XEngine_BuildMake.sh
+            ls -al /usr/local/include
+            echo -e "111111111111111"
+            ls -al /usr/local/lib
