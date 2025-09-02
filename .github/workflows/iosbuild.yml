@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
@@ -26,24 +26,11 @@ jobs:
           repository: microsoft/vcpkg
           path: vcpkg           
 
-      - name: make ios release
+      - name: vcpkg install
         run: |
-            cd XEngine_Source
-            make PLATFORM=ios ARCH=arm RELEASE=1
-            make PLATFORM=ios ARCH=arm FLAGS=install
-            make PLATFORM=ios ARCH=arm FLAGS=clean
-
-      - name: Upload folder as artifact 
-        uses: actions/upload-artifact@v4
-        with:
-          name: XEngine_IOS_Arm64
-          path: XEngine_Source/XEngine_BaseLib/XEngine_BaseSafe
-          retention-days: 1
-      #- name: vcpkg install
-      #  run: |
-      #      brew install cmake ninja pkg-config autoconf nasm
-      #      cd vcpkg
-      #      ./bootstrap-vcpkg.sh
-      #      ./vcpkg install 'mongo-c-driver:arm64-ios'
+            brew install cmake ninja pkg-config autoconf nasm
+            cd vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install 'mongo-c-driver:arm64-ios'
 
           
