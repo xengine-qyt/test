@@ -12,35 +12,34 @@ jobs:
   build:
     runs-on: ${{ matrix.runner }}
     container:
-      image: centos/centos:${{ matrix.stream }}
+      image: almalinux:${{ matrix.version }}
       options: --platform ${{ matrix.platform }}
     strategy:
       matrix:
         include:
+          # AlmaLinux 8
+          - arch: amd64
+            runner: ubuntu-24.04
+            platform: linux/amd64
+            artifact: x86-64
+            version: 8
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+            platform: linux/arm64
+            artifact: Arm64
+            version: 8
+          
+          # AlmaLinux 9
           - arch: amd64
             runner: ubuntu-24.04
             platform: linux/amd64
             artifact: x86-64
             version: 9
-            stream: stream9
-          - arch: amd64
-            runner: ubuntu-24.04
-            platform: linux/amd64
-            artifact: x86-64
-            version: 10
-            stream: stream10
           - arch: arm64
             runner: ubuntu-24.04-arm
             platform: linux/arm64
             artifact: Arm64
             version: 9
-            stream: stream9
-          - arch: arm64
-            runner: ubuntu-24.04-arm
-            platform: linux/arm64
-            artifact: Arm64
-            version: 10
-            stream: stream10
 
     steps:
       - name: Checkout main repository code
@@ -51,3 +50,8 @@ jobs:
         with:
           repository: libxengine/libxengine
           path: libxengine
+
+
+      - name: shell command
+        run: cat /etc/redhat-release
+          
