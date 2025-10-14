@@ -31,4 +31,12 @@ jobs:
         run: echo "TERM=xterm" >> $GITHUB_ENV
         
       - name: install library
+        run: |
+            dnf update -y
+            dnf upgrade -y
+            cd XEngine_SourceCode
+            chmod 777 ./XEngine_BuildMake.sh
+            ./XEngine_BuildMake.sh
+
+      - name: make
         run: dnf search mysql
