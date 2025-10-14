@@ -34,7 +34,7 @@ jobs:
         run: |
             dnf update -y
             dnf upgrade -y
-            cd XEngine_SourceCode
+            cd XEngine_Source
             chmod 777 ./XEngine_LINEnv.sh
             ./XEngine_LINEnv.sh
 
