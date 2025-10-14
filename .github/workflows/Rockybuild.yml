@@ -35,8 +35,8 @@ jobs:
             dnf update -y
             dnf upgrade -y
             cd XEngine_SourceCode
-            chmod 777 ./XEngine_BuildMake.sh
-            ./XEngine_BuildMake.sh
+            chmod 777 ./XEngine_LINEnv.sh
+            ./XEngine_LINEnv.sh
 
       - name: make
         run: dnf search mysql
