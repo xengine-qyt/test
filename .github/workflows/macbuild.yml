@@ -3,7 +3,7 @@ name: macos build workflows
 on:
   push:
     branches: 
-      - main
+      - main1
   
 permissions:
   contents: read

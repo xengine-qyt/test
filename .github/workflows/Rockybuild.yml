@@ -1,0 +1,34 @@
+name: rockylinux x86_64 build workflows
+
+on:
+  push:
+    branches:
+      - main
+  
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: rockylinux/rockylinux:${{ matrix.os_version }}
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+            platform: linux/amd64
+            artifact: x86-64
+            os_version: 9
+
+    steps:
+       # 检出您的主仓库代码
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
+      - name: Set TERM variable
+        run: echo "TERM=xterm" >> $GITHUB_ENV
+        
+      - name: install library
+        run: dnf search mysql
