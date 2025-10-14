@@ -184,44 +184,6 @@ function InstallEnv_CheckIns()
 			fi
 			dnf install $m_EnvRPM -y
 			echo -e "\033[36mrocky依赖库安装完毕\033[0m"
-			if [ ! -e /usr/local/ffmpeg-xengine/bin/ffmpeg ] && [ "$VERSION_ID" == "9" ]; then
-				#lost libfdk-aac-devel libxvid chromaprint libiec61883 libcodec2 libdc1394 libvpl libdrm libmysofa libopenjpeg libplacebo librabbitmq czmq zimg libcdio libgme
-				dnf install gcc make wget nasm pkgconf-pkg-config openal-soft-devel libjxl-devel libxml2-devel fontconfig-devel libbs2b-devel libbluray-devel lv2-devel lilv-devel zvbi-devel libwebp-devel libvpx-devel libvorbis-devel libtheora-devel srt-devel speex-devel snappy-devel soxr-devel libopenmpt-devel libmodplug-devel libdav1d-devel libass-devel libaom-devel x264-devel x265-devel fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel gpgme-devel gmp-devel lame-devel opus-devel xvidcore-devel SDL2-devel libzip-devel -y
-				# 安装ffmpeg
-				echo -e "\033[35mFFMpeg没有被安装,开始安装FFMpeg库\033[0m"
-				rm -f ./ffmpeg-7.1.1.tar.gz
-				wget https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.gz
-				tar zxvf ./ffmpeg-7.1.1.tar.gz
-				cd ffmpeg-7.1.1
-				m_EvnBuildCmd="--prefix=/usr/local/ffmpeg-xengine --pkg-config=pkg-config --enable-gpl --enable-gnutls --enable-nonfree --enable-version3 --enable-pic"
-				m_EvnBuildCmd+=" --disable-debug --disable-static --enable-shared"
-				# 图像
-				m_EvnBuildCmd+=" --enable-libwebp --enable-sdl2 --enable-libjxl"
-				# 音频
-				m_EvnBuildCmd+=" --enable-openal --enable-libbs2b --enable-lv2 --enable-libvorbis --enable-libspeex --enable-libsoxr --enable-libopenmpt --enable-libmodplug --enable-libmp3lame --enable-libopus"
-				# 视频
-				m_EvnBuildCmd+=" --enable-libbluray --enable-libzvbi --enable-libvpx --enable-libtheora --enable-libx264 --enable-libx265 --enable-libdav1d --enable-libaom"
-				# 滤镜
-				m_EvnBuildCmd+=" --enable-fontconfig --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libass"
-				# 硬件加速
-				m_EvnBuildCmd+=""
-				# 计算
-				m_EvnBuildCmd+=" --enable-gmp"
-				# 通信
-				m_EvnBuildCmd+=""
-				# 三方库
-				m_EvnBuildCmd+=" --enable-libxml2 --enable-libsrt --enable-libsnappy --enable-zlib"
-				# 附加库
-				m_EvnBuildCmd+=" --enable-filter=drawtext"
-				# 附加信息
-				m_EvnBuildCmd+=" --extra-ldflags="-Wl,-rpath=/usr/local/ffmpeg-xengine/lib""
-				./configure $m_EvnBuildCmd
-				make
-				make install
-				make clean
-				ldconfig
-				cd ..
-			fi
 		fi
 	fi
 	#UBuntu
