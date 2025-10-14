@@ -174,15 +174,13 @@ function InstallEnv_CheckIns()
 			echo -e "\033[35mrocky开始安装依赖库,如果安装失败，请更换安装源在执行一次\033[0m"
 			if [ "$VERSION_ID" == "9" ] ; then
 				m_EnvRPM+=" mysql-libs"
-				dnf install --allowerasing $m_EnvRPM -y
 			elif [ "$VERSION_ID" == "10" ]; then
 				m_EnvRPM+=" mysql8.4-libs ffmpeg-libs libavdevice"
-				dnf install --allowerasing $m_EnvRPM -y
 			else
 				echo -e "\033[31mThis script only supports Rockylinux 9 and 10.\033[0m"
 				exit 1
 			fi
-			dnf install $m_EnvRPM -y
+			dnf install --allowerasing $m_EnvRPM -y
 			echo -e "\033[36mrocky依赖库安装完毕\033[0m"
 		fi
 	fi
