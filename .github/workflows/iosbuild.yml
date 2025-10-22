@@ -37,7 +37,7 @@ jobs:
           echo -e "disk2"
           # diskutil info disk0 | grep 'Serial Number'
           echo -e "disk3"
-          system_profiler SPStorageDataType
+          system_profiler SPStorageDataType | grep "Volume UUID" | awk '{print $3}'
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
