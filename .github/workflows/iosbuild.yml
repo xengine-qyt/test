@@ -35,7 +35,7 @@ jobs:
           echo -e "disk1"
           # system_profiler SPNVMeDataType | grep "Serial Number"
           echo -e "disk2"
-          diskutil info disk0 | grep 'Serial Number'
+          # diskutil info disk0 | grep 'Serial Number'
           echo -e "disk3"
           system_profiler SPStorageDataType
 
@@ -51,6 +51,6 @@ jobs:
             brew install cmake ninja pkg-config autoconf nasm
             cd vcpkg
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios'
+            # ./vcpkg install 'mongo-c-driver:arm64-ios'
 
           
