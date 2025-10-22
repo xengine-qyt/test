@@ -31,9 +31,9 @@ jobs:
           echo -e "system"
           system_profiler SPHardwareDataType | grep "Hardware UUID" | awk '{print $3}'
           echo -e "cpu"
-          ioreg -l | grep -i serial
+          # ioreg -l | grep -i serial
           echo -e "disk1"
-          system_profiler SPNVMeDataType | grep "Serial Number"
+          # system_profiler SPNVMeDataType | grep "Serial Number"
           echo -e "disk2"
           diskutil info disk0 | grep 'Serial Number'
           echo -e "disk3"
