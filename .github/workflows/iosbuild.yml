@@ -31,9 +31,13 @@ jobs:
           echo -e "system"
           system_profiler SPHardwareDataType | grep "Hardware UUID" | awk '{print $3}'
           echo -e "cpu"
-          system_profiler SPChipDataType
-          echo -e "disk"
-          system_profiler SPSerialATADataType | grep -A 10 "Mount Point: /" | grep "Serial Number" | awk '{print $3}'
+          ioreg -l | grep -i serial
+          echo -e "disk1"
+          system_profiler SPNVMeDataType | grep "Serial Number"
+          echo -e "disk2"
+          diskutil info disk0 | grep 'Serial Number'
+          echo -e "disk3"
+          system_profiler SPStorageDataType
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
