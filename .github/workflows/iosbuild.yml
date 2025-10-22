@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
@@ -19,13 +19,17 @@ jobs:
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v4
-        
+
+      - name: vcpkg dependency repository
+        run: system_profiler SPHardwareDataType
+
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
           path: vcpkg           
 
+      
       - name: vcpkg install
         run: |
             brew install cmake ninja pkg-config autoconf nasm

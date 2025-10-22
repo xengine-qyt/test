@@ -1,0 +1,51 @@
+name: windows build workflows
+
+on:
+  push:
+    branches:
+      - 'main'
+  
+  
+jobs:
+  build:
+    strategy:
+      # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
+      fail-fast: false
+      matrix:
+        configuration: [Debug]
+        platform: [x86 ,x64]
+
+    runs-on: windows-latest # 最新的 Windows 环境
+    steps:
+       # 检出您的主仓库代码
+      - name: Checkout main repository code
+        uses: actions/checkout@v4
+
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg     
+         
+      - name: vcpkg install (x86)
+        if: matrix.platform == 'x86'  
+        run: |
+            cd vcpkg
+            ./bootstrap-vcpkg.bat
+            ./vcpkg.exe install opencv[contrib,freetype]:x86-windows
+            ./vcpkg.exe integrate install
+        shell: pwsh
+      - name: vcpkg install (x64)
+        if: matrix.platform == 'x64'  
+        run: |
+            cd vcpkg
+            ./bootstrap-vcpkg.bat
+            ./vcpkg.exe install opencv[contrib,freetype]:x64-windows
+            ./vcpkg.exe integrate install
+        shell: pwsh
+        
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Solution
+        run: msbuild XEngine_Source/XEngine.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
