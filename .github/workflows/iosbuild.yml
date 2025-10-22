@@ -14,14 +14,26 @@ jobs:
       matrix:
         include:
           - os: macos-15
+          - os: macos-15-intel
     runs-on: ${{ matrix.os }}
     
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v4
 
-      - name: vcpkg dependency repository
-        run: system_profiler SPHardwareDataType
+      - name: hardware info 
+        run: |
+          system_profiler SPHardwareDataType
+          system_profiler SPChipDataType
+          system_profiler SPSerialATADataType
+          echo -e "broad"
+          system_profiler SPHardwareDataType | grep "Serial Number" | head -1 | awk '{print $4}'
+          echo -e "system"
+          system_profiler SPHardwareDataType | grep "Hardware UUID" | awk '{print $3}'
+          echo -e "cpu"
+          system_profiler SPChipDataType
+          echo -e "disk"
+          system_profiler SPSerialATADataType | grep -A 10 "Mount Point: /" | grep "Serial Number" | awk '{print $3}'
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
