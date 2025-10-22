@@ -29,9 +29,9 @@ jobs:
           echo -e "system"
           system_profiler SPHardwareDataType | grep "Hardware UUID" | awk '{print $3}'
           echo -e "cpu"
-          # ioreg -l | grep -i serial
+          ioreg -l | grep -i serial
           echo -e "disk"
-          system_profiler SPStorageDataType | grep "Volume UUID" | awk '{print $3}'
+          system_profiler SPStorageDataType | grep "Volume UUID" | awk 'NR==1{print $3}'
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
