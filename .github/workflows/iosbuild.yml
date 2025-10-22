@@ -23,9 +23,7 @@ jobs:
 
       - name: hardware info 
         run: |
-          ioreg
-          ioreg -l
-          ioreg -l | grep -i serial
+          ioreg -l | grep -i serial-number
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
