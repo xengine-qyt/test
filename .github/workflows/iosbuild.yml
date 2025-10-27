@@ -23,7 +23,9 @@ jobs:
 
       - name: hardware info 
         run: |
-          ioreg -l | grep -i '"serial-number"' | head -n 1 | sed 's/.*<\(.*\)>.*/\1/' | xxd -r -p
+          system_profiler SPStorageDataType
+          echo -e "======================="
+          system_profiler SPHardwareDataType
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
