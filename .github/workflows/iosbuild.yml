@@ -25,7 +25,7 @@ jobs:
         run: |
           system_profiler SPStorageDataType
           echo -e "======================="
-          system_profiler SPHardwareDataType
+          ioreg -l | grep -i '\"serial - number\"' | head -n 1 | sed 's/.*<(.*)>.*/1/' | xxd -r -p
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
