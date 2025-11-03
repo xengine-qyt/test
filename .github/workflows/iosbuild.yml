@@ -24,7 +24,7 @@ jobs:
       - name: hardware info 
         run: |
           echo -e "======================="
-          ioreg -l | grep -i '\"serial - number\"'
+          ioreg -l | grep -i 'serial - number'
 
       - name: vcpkg dependency repository
         uses: actions/checkout@v4
