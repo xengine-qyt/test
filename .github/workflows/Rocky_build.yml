@@ -50,6 +50,12 @@ jobs:
             dnf update -y
             dnf install gcc g++ make git jq unzip wget -y
 
+      - name: install xengine library
+        run: |
+            cd XEngine_Source
+            chmod 777 *
+            ./XEngine_LINEnv.sh -i 3
+            
       - name: install depend library
         run: |
           dnf search srtp
