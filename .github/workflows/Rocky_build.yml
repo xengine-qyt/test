@@ -64,3 +64,4 @@ jobs:
         run: |
           dnf search srtp
           dnf search srt
+          dnf install libsrtp-devel srt-devel -y
