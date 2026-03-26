@@ -1,18 +1,7 @@
 #!/bin/bash
 clear
 m_EnvRelease=0
-#检查
-function InstallEnv_CheckRoot()
-{
-	echo -e "\033[34m检查你的执行权限中。。。\033[0m"
- 	ROOT_UID=0
-	if [ "$UID" -eq "$ROOT_UID" ] ; then
-		echo -e "\033[32m检查到是ROOT权限执行，继续执行下一步。。。\033[0m"
-	else
-		echo -e "\033[31m检查到你不是ROOT权限，请切换到ROOT权限执行。。。 \033[0m"
-		exit 0
-	fi
-}
+
 function InstallEnv_CheckSystem()
 {
 	if [ $(uname) == "Linux" ] ; then
@@ -92,7 +81,6 @@ function InstallEnv_Execution()
 	fi
 }
 
-InstallEnv_CheckRoot
 InstallEnv_CheckSystem
 InstallEnv_XEngine
 InstallEnv_Execution

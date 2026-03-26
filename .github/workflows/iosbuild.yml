@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
@@ -32,5 +32,7 @@ jobs:
         run: |
             brew install cmake ninja pkg-config autoconf nasm
             cd vcpkg
+            export SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
+            export CMAKE_OSX_SYSROOT=$SDKROOT
             ./bootstrap-vcpkg.sh
             ./vcpkg install 'mongo-c-driver:arm64-ios'
