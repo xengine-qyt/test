@@ -34,7 +34,7 @@ jobs:
             export SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
             export CMAKE_OSX_SYSROOT=$SDKROOT
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios'
+            ./vcpkg install 'mongo-c-driver:arm64-ios' --overlay-triplets=vcpkg/triplets/community -- -DENABLE_SRV=OFF
       - name: Show vcpkg build logs on failure
         if: failure()
         run: |
