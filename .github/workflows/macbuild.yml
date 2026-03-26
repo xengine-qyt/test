@@ -1,0 +1,44 @@
+name: macos build workflows
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'XEngine_Source/**'
+      - 'XEngine_Release/**'
+      - '.github/**'
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: macos-15
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v6
+        with:
+          ref: 'main'
+        
+       # 检出依赖的xengine仓库到指定的xengine目录
+      - name: Checkout dependency repository (xengine)
+        uses: actions/checkout@v6
+        with:
+          repository: libxengine/libxengine
+          path: libxengine
+
+      - name: sub module checkout (opensource)
+        run: |
+            git submodule init
+            git submodule update
+
+      - name: Set TERM variable
+        run: echo "TERM=xterm" >> $GITHUB_ENV
+
+      - name: install xengine package
+        run: |
+            chmod 777 ./AVCodec_ENVInstall.sh
+            sudo ./AVCodec_ENVInstall.sh
