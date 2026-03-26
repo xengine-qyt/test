@@ -26,4 +26,5 @@ jobs:
         run: |
             brew install tsduck
             brew info tsduck
-            brew list tsduck
+            ls -al /opt/homebrew/opt/
+            ls -al /opt/homebrew/opt/tsduck
