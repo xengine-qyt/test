@@ -3,7 +3,7 @@ name: macos build workflows
 on:
   push:
     branches:
-      - 'main1'
+      - 'main'
   
 jobs:
   build:
@@ -19,22 +19,9 @@ jobs:
         with:
           ref: 'main'
         
-       # 检出依赖的xengine仓库到指定的xengine目录
-      - name: Checkout dependency repository (xengine)
-        uses: actions/checkout@v6
-        with:
-          repository: libxengine/libxengine
-          path: libxengine
-
-      - name: sub module checkout (opensource)
-        run: |
-            git submodule init
-            git submodule update
-
       - name: Set TERM variable
         run: echo "TERM=xterm" >> $GITHUB_ENV
 
       - name: install xengine package
         run: |
-            chmod 777 ./AVCodec_ENVInstall.sh
-            ./AVCodec_ENVInstall.sh
+            brew install tsduck
