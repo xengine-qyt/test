@@ -14,7 +14,6 @@ jobs:
       matrix:
         include:
           - os: macos-15
-          - os: macos-15-intel
     runs-on: ${{ matrix.os }}
     
     steps:
@@ -36,3 +35,8 @@ jobs:
             export CMAKE_OSX_SYSROOT=$SDKROOT
             ./bootstrap-vcpkg.sh
             ./vcpkg install 'mongo-c-driver:arm64-ios'
+      - name: Show vcpkg build logs on failure
+        if: failure()
+        run: |
+          cat vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-out.log || true
+          cat vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-err.log || true

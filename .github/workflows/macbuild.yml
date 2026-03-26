@@ -3,11 +3,7 @@ name: macos build workflows
 on:
   push:
     branches:
-      - 'main'
-    paths:
-      - 'XEngine_Source/**'
-      - 'XEngine_Release/**'
-      - '.github/**'
+      - 'main1'
   
 jobs:
   build:
