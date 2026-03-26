@@ -48,3 +48,9 @@ jobs:
         run: |
           cat vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-out.log || true
           cat vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-err.log || true
+
+      - name: Show build logs on failure
+        if: failure()
+        run: |
+          cat vcpkg/buildtrees/mongo-c-driver/install-arm64-ios-dbg-out.log || true
+          cat vcpkg/buildtrees/mongo-c-driver/install-arm64-ios-rel-out.log || true
