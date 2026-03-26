@@ -41,4 +41,4 @@ jobs:
       - name: install xengine package
         run: |
             chmod 777 ./AVCodec_ENVInstall.sh
-            sudo ./AVCodec_ENVInstall.sh
+            ./AVCodec_ENVInstall.sh
