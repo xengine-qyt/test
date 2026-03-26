@@ -25,3 +25,5 @@ jobs:
       - name: install xengine package
         run: |
             brew install tsduck
+            brew info tsduck
+            brew list tsduck
