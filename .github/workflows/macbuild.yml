@@ -24,7 +24,5 @@ jobs:
 
       - name: install xengine package
         run: |
-            brew install sdl2
-            brew info sdl2
-            ls -al /opt/homebrew/include/sdl2/
-            ls -al /opt/homebrew/lib/
+            brew install opencv-contrib
+            brew info opencv-contrib
