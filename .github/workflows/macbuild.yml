@@ -24,5 +24,6 @@ jobs:
 
       - name: install xengine package
         run: |
-            brew install opencv --with-contrib
-            brew info opencv
+            brew install opencv
+            find /opt/homebrew -name "freetype2.hpp" 2>/dev/null
+            find /usr/local -name "freetype2.hpp" 2>/dev/null
