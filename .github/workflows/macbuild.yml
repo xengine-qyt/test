@@ -26,5 +26,5 @@ jobs:
         run: |
             brew install tsduck
             brew info tsduck
-            ls -al /opt/homebrew/include/tsduck/
-            ls -al /opt/homebrew/lib/tsduck/
+            find /opt/homebrew -name "libtsduck*" 2>/dev/null
+            find /opt/homebrew -name "libts*" 2>/dev/null
