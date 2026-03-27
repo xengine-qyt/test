@@ -24,7 +24,7 @@ jobs:
 
       - name: install xengine package
         run: |
-            brew install tsduck
-            brew info tsduck
-            find /opt/homebrew -name "libtsduck*" 2>/dev/null
-            find /opt/homebrew -name "libts*" 2>/dev/null
+            brew install sdl2
+            brew info sdl2
+            ls -al /opt/homebrew/include/sdl2/
+            ls -al /opt/homebrew/lib/
