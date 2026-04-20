@@ -27,4 +27,4 @@ jobs:
             brew install mongo-c-driver@2
             brew info mongo-c-driver@2
             ls -al /opt/homebrew/opt
-            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.2.4
+            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.2.4/include
