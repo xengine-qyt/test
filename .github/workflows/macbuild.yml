@@ -26,4 +26,7 @@ jobs:
         run: |
             brew install mongo-c-driver@2 
             pkg-config --cflags mongoc2 
+
+            brew --prefix mongo-c-driver@2
+            ls $(brew --prefix mongo-c-driver@2)/include/
             
