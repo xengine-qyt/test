@@ -25,10 +25,4 @@ jobs:
       - name: install xengine package
         run: |
             brew install mongo-c-driver@2 mysql-client@8.0 libpq
-            ls $(brew --prefix mysql-client@8.0)/lib/pkgconfig/
-            ls $(brew --prefix libpq)/lib/pkgconfig/
-
-            ls /opt/homebrew/lib/pkgconfig/ | grep -E "mongoc|mysql|pq"
-
-            pkg-config --cflags mysqlclient
-            pkg-config --libs mysqlclient
+            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.3.0/include/mongoc-2.3.0
