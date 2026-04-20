@@ -24,6 +24,6 @@ jobs:
 
       - name: install xengine package
         run: |
-            brew install mongo-c-driver-devel
-            brew info mongo-c-driver-devel
+            brew install mongo-c-driver@2
+            brew info mongo-c-driver@2
             ls -al /opt/homebrew
