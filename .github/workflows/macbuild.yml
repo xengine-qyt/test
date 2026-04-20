@@ -24,7 +24,8 @@ jobs:
 
       - name: install xengine package
         run: |
-            brew install mongo-c-driver@2
-            ls $(brew --prefix mongo-c-driver@2)/lib/pkgconfig/
-            echo "PKG_CONFIG_PATH=$(brew --prefix mongo-c-driver@2)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+            brew install mongo-c-driver@2 mysql-client@8.0 libpq
+            ls $(brew --prefix mysql-client@8.0)/lib/pkgconfig/
+            ls $(brew --prefix libpq)/lib/pkgconfig/
+
             pkg-config --cflags mongoc2
