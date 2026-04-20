@@ -24,6 +24,6 @@ jobs:
 
       - name: install xengine package
         run: |
-            brew install opencv
-            find /opt/homebrew -name "freetype2.hpp" 2>/dev/null
-            find /usr/local -name "freetype2.hpp" 2>/dev/null
+            brew install mongo-c-driver-devel
+            brew info mongo-c-driver-devel
+            ls -al /opt/homebrew

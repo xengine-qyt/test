@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
@@ -31,18 +31,9 @@ jobs:
         run: |
             brew install cmake ninja pkg-config autoconf nasm
             cd vcpkg
-            mkdir -p custom-triplets
-            cat > custom-triplets/arm64-ios.cmake << 'EOF'
-            set(VCPKG_TARGET_ARCHITECTURE arm64)
-            set(VCPKG_CRT_LINKAGE dynamic)
-            set(VCPKG_LIBRARY_LINKAGE static)
-            set(VCPKG_CMAKE_SYSTEM_NAME iOS)
-            set(VCPKG_OSX_ARCHITECTURES arm64)
-            set(VCPKG_CMAKE_CONFIGURE_OPTIONS -DENABLE_SRV=OFF)
-            EOF
 
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios' --overlay-triplets=custom-triplets
+            ./vcpkg install 'mongo-c-driver:arm64-ios'
       - name: Show vcpkg build logs on failure
         if: failure()
         run: |
