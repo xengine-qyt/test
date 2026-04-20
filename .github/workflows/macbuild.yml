@@ -26,6 +26,4 @@ jobs:
         run: |
             brew install mongo-c-driver@2
             brew info mongo-c-driver@2
-            ls -al /opt/homebrew/include
-            ls -al /opt/homebrew/opt/mongo-c-driver/include/
-            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.2.4/include/mongoc-2.2.4
+            shell pkg-config --cflags libmongoc@2 libbson@2 mysql-client@8 libpq
