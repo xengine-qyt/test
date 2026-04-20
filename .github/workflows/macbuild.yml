@@ -28,5 +28,5 @@ jobs:
             ls $(brew --prefix mysql-client@8.0)/lib/pkgconfig/
             ls $(brew --prefix libpq)/lib/pkgconfig/
 
-            pkg-config --cflags mongoc2
-            pkg-config --libs mongoc2
+            pkg-config --cflags mysqlclient
+            pkg-config --libs mysqlclient
