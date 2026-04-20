@@ -27,4 +27,4 @@ jobs:
             brew install mongo-c-driver@2
             brew info mongo-c-driver@2
             echo "PKG_CONFIG_PATH=$(brew --prefix mongo-c-driver@2)/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
-            pkg-config --cflags libmongoc
+            pkg-config --cflags libmongoc@2
