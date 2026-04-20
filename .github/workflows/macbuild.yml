@@ -29,4 +29,6 @@ jobs:
 
             brew --prefix mongo-c-driver@2
             ls $(brew --prefix mongo-c-driver@2)/include/
+
+            ls /opt/homebrew/opt/mongo-c-driver/include/mongoc-2.2.4/
             
