@@ -32,7 +32,13 @@ jobs:
 
       - name: Set TERM variable
         run: echo "TERM=xterm" >> $GITHUB_ENV
-                  
+             
+      - name: install env
+        run: |
+            dnf install epel-release -y
+            dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-10.noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-10.noarch.rpm
+            dnf config-manager --enable crb
+
       - name: make
         run: |
             dnf install mongo-c-driver-libs
