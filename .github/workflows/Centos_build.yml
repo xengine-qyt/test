@@ -42,4 +42,6 @@ jobs:
       - name: make
         run: |
             dnf install mongo-c-driver-libs -y
+
+            rpm -ql mongo-c-driver-libs
             ls -al /usr/lib64/
