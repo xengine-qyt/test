@@ -3,7 +3,7 @@ name: macos build workflows
 on:
   push:
     branches:
-      - 'main1'
+      - 'main'
   
 jobs:
   build:
@@ -26,12 +26,6 @@ jobs:
         run: |
             brew install mongo-c-driver@2 
             pkg-config --cflags mongoc2 
-            
-            echo -e "==============="
-            brew config
-            echo -e "==============="
-            brew doctor
-            echo -e "==============="
 
             brew --prefix mongo-c-driver@2
             ls $(brew --prefix mongo-c-driver@2)/include/
