@@ -31,8 +31,8 @@ jobs:
             ls $(brew --prefix mongo-c-driver@2)/include/
 
             echo -e "====================="
-            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.2.4/include/mongoc-2.2.4
+            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.2.4/include/mongoc-2.2.4/mongoc
             echo -e "====================="
-            ls -al /opt/homebrew/opt/mongo-c-driver/mongoc-2.2.4
+            ls -al /opt/homebrew/opt/mongo-c-driver/
             
             
