@@ -50,14 +50,6 @@ jobs:
             dnf install epel-release -y
             dnf config-manager --enable crb
 
-      - name: make amd64
-        if: matrix.artifact == 'x86-64'
-        run: | 
-            cd XEngine_SourceCode
-            make RELEASE=1
-            make FLAGS=install
-            make FLAGS=clean
-
       - name: make
         run: |
             dnf install mongo-c-driver-libs -y
