@@ -11,6 +11,7 @@ jobs:
       matrix:
         include:
           - os: macos-15
+          - os: macos-15-intel
     runs-on: ${{ matrix.os }}
     
     steps:
@@ -33,6 +34,6 @@ jobs:
             echo -e "====================="
             ls -al /opt/homebrew/Cellar/mongo-c-driver/2.2.4/include/mongoc-2.2.4/mongoc
             echo -e "====================="
-            ls -al /opt/homebrew/opt/mongo-c-driver/
+            ls -al /opt/homebrew/opt/mongo-c-driver/include
             
             
