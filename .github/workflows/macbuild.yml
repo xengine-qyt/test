@@ -28,6 +28,7 @@ jobs:
             brew update
             brew install mongo-c-driver@2 
             pkg-config --cflags mongoc2 
+            pkg-config --libs mongoc2 
 
             echo -e "====================="
             ls -al /opt/homebrew/Cellar/mongo-c-driver/2.3.0/include/mongoc-2.3.0
