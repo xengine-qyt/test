@@ -31,7 +31,6 @@ jobs:
 
             echo -e "====================="
             brew update
-            brew install mongo-c-driver@2 
             pkg-config --cflags mongoc2 
             pkg-config --libs mongoc2 
             ls -al /opt/homebrew/opt/mongo-c-driver/include
