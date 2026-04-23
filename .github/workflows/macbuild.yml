@@ -25,6 +25,7 @@ jobs:
 
       - name: install xengine package
         run: |
+            brew update
             brew install mongo-c-driver@2 
             pkg-config --cflags mongoc2 
 
