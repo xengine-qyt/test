@@ -25,15 +25,11 @@ jobs:
       - name: install package
         run: |
             brew install mongo-c-driver@1 tree
-            pkg-config --cflags mongoc 
-            pkg-config --libs mongoc
             ls -al /opt/homebrew/opt/mongo-c-driver/include
 
             echo -e "====================="
             brew update
             brew upgrade
-            pkg-config --cflags mongoc 
-            pkg-config --libs mongoc 
             ls -al /opt/homebrew/opt/mongo-c-driver/include
             
             
