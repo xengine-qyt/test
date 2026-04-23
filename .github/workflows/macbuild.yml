@@ -25,12 +25,16 @@ jobs:
 
       - name: install xengine package
         run: |
+            brew install mongo-c-driver@2 
+            pkg-config --cflags mongoc2 
+            pkg-config --libs mongoc2
+            ls --tree --depth 2 /opt/homebrew/opt/libmongoc/include/
+
+            echo -e "====================="
             brew update
             brew install mongo-c-driver@2 
             pkg-config --cflags mongoc2 
             pkg-config --libs mongoc2 
-
-            echo -e "====================="
-            ls -al /opt/homebrew/Cellar/mongo-c-driver/2.3.0/include/mongoc-2.3.0
+            ls --tree --depth 2 /opt/homebrew/opt/libmongoc/include/
             
             
