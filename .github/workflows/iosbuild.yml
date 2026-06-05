@@ -33,4 +33,4 @@ jobs:
             cd vcpkg
 
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios libpq[openssl]:arm64-ios'
+            ./vcpkg install 'mongo-c-driver:arm64-ios' 'libpq[openssl]:arm64-ios'
