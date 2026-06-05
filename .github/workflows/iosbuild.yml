@@ -3,7 +3,7 @@ name: ios build workflows
 on:
   push:
     branches: 
-      - main1
+      - main
 
 permissions:
   contents: read
@@ -33,15 +33,4 @@ jobs:
             cd vcpkg
 
             ./bootstrap-vcpkg.sh
-            ./vcpkg install 'mongo-c-driver:arm64-ios'
-      - name: Show vcpkg build logs on failure
-        if: failure()
-        run: |
-          cat vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-out.log || true
-          cat vcpkg/buildtrees/mongo-c-driver/config-arm64-ios-dbg-err.log || true
-
-      - name: Show build logs on failure
-        if: failure()
-        run: |
-          cat vcpkg/buildtrees/mongo-c-driver/install-arm64-ios-dbg-out.log || true
-          cat vcpkg/buildtrees/mongo-c-driver/install-arm64-ios-rel-out.log || true
+            ./vcpkg install 'mongo-c-driver:arm64-ios libpq[openssl]:arm64-ios'
