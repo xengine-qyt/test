@@ -25,6 +25,6 @@ jobs:
       - name: install package
         run: |
             brew install opencv
-            brew info opencv
+            brew --prefix opencv
             ls -al /opt/homebrew/opt/opencv4
             
