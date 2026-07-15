@@ -24,12 +24,7 @@ jobs:
 
       - name: install package
         run: |
-            brew install mongo-c-driver@1 tree
-            ls -al /opt/homebrew/opt/mongo-c-driver/include
-
-            echo -e "====================="
-            brew update
-            brew upgrade
-            ls -al /opt/homebrew/opt/mongo-c-driver/include
-            
+            brew install opencv
+            brew info opencv
+            ls -al /opt/homebrew/opt/opencv4
             
