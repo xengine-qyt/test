@@ -28,4 +28,5 @@ jobs:
             brew --prefix opencv@4
             ls -al /opt/homebrew/opt/opencv/include 
             ls -al /opt/homebrew/opt/opencv/include/opencv4 
+            ls -al /opt/homebrew/opt/opencv/include/opencv4/opencv2
             
