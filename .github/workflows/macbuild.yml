@@ -26,5 +26,6 @@ jobs:
         run: |
             brew install opencv@4
             brew --prefix opencv@4
-            ls -al /opt/homebrew/opt/opencv
+            ls -al /opt/homebrew/opt/opencv/include 
+            ls -al /opt/homebrew/opt/opencv/include/opencv4 
             
