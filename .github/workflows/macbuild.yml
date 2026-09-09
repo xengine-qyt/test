@@ -1,32 +1,40 @@
-name: macos build workflows
+name: ios build workflows
 
 on:
   push:
-    branches:
-      - 'main'
+
+permissions:
+  contents: read
   
 jobs:
   build:
     strategy:
       matrix:
         include:
-          - os: macos-15
+          - os: macos-26
     runs-on: ${{ matrix.os }}
     
     steps:
       - name: Checkout main repository code
         uses: actions/checkout@v6
         with:
-          ref: 'main'
-        
-      - name: Set TERM variable
-        run: echo "TERM=xterm" >> $GITHUB_ENV
+          ref: 'develop'
 
-      - name: install package
+      - name: brew install
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v6
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg        
+          ref: 2026.06.24
+             
+      - name: vcpkg install
         run: |
-            brew install opencv@4
-            brew --prefix opencv@4
-            ls -al /opt/homebrew/opt/opencv/include 
-            ls -al /opt/homebrew/opt/opencv/include/opencv4 
-            ls -al /opt/homebrew/opt/opencv/include/opencv4/opencv2
+            brew install pkg-config autoconf nasm
+            cp -rf ./vcpkg $HOME
             
+            cd $HOME/vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:arm64-tvos 'curl[openssl,http2]:arm64-tvos' 'sqlite3:arm64-tvos' 'zlib:arm64-tvos' 'minizip:arm64-tvos' 'nghttp2:arm64-tvos' 'ffmpeg:arm64-tvos' --clean-after-build
