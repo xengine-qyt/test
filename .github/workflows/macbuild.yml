@@ -18,9 +18,6 @@ jobs:
       - name: Checkout main repository code
         uses: actions/checkout@v7
 
-      - name: brew install
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        
       - name: vcpkg dependency repository
         uses: actions/checkout@v7
         with:
@@ -30,10 +27,7 @@ jobs:
              
       - name: vcpkg install
         run: |
-            brew install pkg-config autoconf nasm
-            cp -rf ./vcpkg $HOME
-            
-            cd $HOME/vcpkg
-            ./bootstrap-vcpkg.sh
-            ./vcpkg install libiconv:arm64-tvos 'curl[openssl,http2]:arm64-tvos' 'sqlite3:arm64-tvos' 'zlib:arm64-tvos' 'minizip:arm64-tvos' 'nghttp2:arm64-tvos' 'ffmpeg:arm64-tvos' --clean-after-build
-            ./vcpkg install libiconv:arm64-ios 'curl[openssl,http2]:arm64-ios' 'sqlite3:arm64-ios' 'zlib:arm64-ios' 'minizip:arm64-ios' 'nghttp2:arm64-ios' 'ffmpeg:arm64-ios' --clean-after-build
+            brew install pkg-config mongo-c-driver mysql-client libpq
+            brew list mongo-c-driver  
+            brew list mysql-client
+            brew list libpq
