@@ -27,13 +27,13 @@ jobs:
              
       - name: vcpkg install
         run: |
-            brew install pkg-config mysql-client libpq
+            brew install pkg-config mysql-client
 
             brew list mysql-client
-            export PKG_CONFIG_PATH=/opt/homebrew/opt/mysql-client/lib/pkgconfig
             pkg-config --cflags mysqlclient
             pkg-config --libs mysqlclient
 
+            brew install libpq
             brew list libpq
             export PKG_CONFIG_PATH="$(brew --prefix)/opt/libpq/lib/pkgconfig:$PKG_CONFIG_PATH"
             pkg-config --cflags libpq
