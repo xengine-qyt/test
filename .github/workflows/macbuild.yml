@@ -30,7 +30,7 @@ jobs:
             brew install pkg-config mysql-client libpq
 
             brew list mysql-client
-            export PKG_CONFIG_PATH="$(brew --prefix)/opt/mysql-client/lib/pkgconfig"
+            export PKG_CONFIG_PATH=/opt/homebrew/opt/mysql-client/lib/pkgconfig
             pkg-config --cflags mysql-client
             pkg-config --libs mysql-client
 
