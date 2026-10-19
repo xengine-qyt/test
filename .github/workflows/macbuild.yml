@@ -31,6 +31,5 @@ jobs:
 
             brew install libpq
             brew list libpq
-            export PKG_CONFIG_PATH="$(brew --prefix)/opt/libpq/lib/pkgconfig:$PKG_CONFIG_PATH"
             pkg-config --cflags libpq
             pkg-config --libs libpq
