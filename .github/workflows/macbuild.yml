@@ -27,13 +27,14 @@ jobs:
              
       - name: vcpkg install
         run: |
-            brew install pkg-config mongo-c-driver mysql-client libpq
-            brew list mongo-c-driver  
-            pkg-config --cflags mongoc2
+            brew install pkg-configmysql-client libpq
 
             brew list mysql-client
+            export PKG_CONFIG_PATH="$(brew --prefix)/opt/mysql-client/lib/pkgconfig"
             pkg-config --cflags mysql-client
+            pkg-config --libs mysql-client
 
             brew list libpq
+            export PKG_CONFIG_PATH="$(brew --prefix)/opt/libpq/lib/pkgconfig:$PKG_CONFIG_PATH"
             pkg-config --cflags libpq
-            
+            pkg-config --libs libpq
