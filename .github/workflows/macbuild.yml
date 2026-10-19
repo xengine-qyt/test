@@ -29,5 +29,11 @@ jobs:
         run: |
             brew install pkg-config mongo-c-driver mysql-client libpq
             brew list mongo-c-driver  
+            pkg-config --cflags mongoc2
+
             brew list mysql-client
+            pkg-config --cflags mysql-client
+
             brew list libpq
+            pkg-config --cflags libpq
+            
