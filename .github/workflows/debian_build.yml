@@ -51,5 +51,8 @@ jobs:
         run: |
             apt update -y
 
-            apt search mariadb
-            apt install pkg-config libmariadb3 -y
+            apt install libmariadb3 -y
+            dpkg -L libmariadb3
+            
+            apt install libmariadb-dev -y
+            dpkg -L libmariadb-dev
