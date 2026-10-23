@@ -35,6 +35,6 @@ jobs:
 
       - name: test
         run: |
-            sudo dnf search mysql
-            sudo dnf install mysql8.0-libs mysql8.0-devel -y
+            dnf search mysql
+            dnf install mysql8.0-libs mysql8.0-devel -y
             pkg-config -cflags mysqlclient
