@@ -51,6 +51,6 @@ jobs:
         run: |
             apt update -y
 
-            apt search libmariadb
+            apt search pkg-config libmariadb
             apt install libmariadb-dev -y
             pkg-config -cflags mysqlclient
