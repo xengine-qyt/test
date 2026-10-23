@@ -1,0 +1,40 @@
+name: rocky build workflows
+
+on:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ${{ matrix.runner }}
+    container:
+      image: rockylinux/rockylinux:${{ matrix.version }}
+      options: --platform ${{ matrix.platform }}
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+            platform: linux/amd64
+            artifact: x86-64
+            version: 9
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+            platform: linux/arm64
+            artifact: Arm64
+            version: 9
+
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v7
+
+      - name: Set TERM variable
+        run: echo "TERM=xterm" >> $GITHUB_ENV
+
+      - name: test
+        run: |
+            sudo dnf search mysql
+            sudo dnf install mysql8.0-libs mysql8.0-devel -y
+            pkg-config -cflags mysqlclient
