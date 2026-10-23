@@ -53,5 +53,6 @@ jobs:
 
             apt search libmariadb
             apt install pkg-config libmariadb-dev -y
+            ls -al /usr/include/mariadb/ 
             pkg-config --cflags libmariadb
             pkg-config --libs libmariadb
