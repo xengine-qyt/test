@@ -51,6 +51,6 @@ jobs:
         run: |
             apt update -y
 
-            apt search mysql
+            apt search libmysql
             apt install mysql-libs mysql-devel -y
             pkg-config -cflags mysqlclient
