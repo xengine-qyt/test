@@ -38,7 +38,7 @@ jobs:
             dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
             dnf config-manager --enable crb
             dnf update -y
-            
+
             dnf search mysql
-            dnf install mysql8.0-libs mysql8.0-devel -y
+            dnf install mysql-libs mysql-devel -y
             pkg-config -cflags mysqlclient
