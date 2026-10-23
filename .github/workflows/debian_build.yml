@@ -51,8 +51,7 @@ jobs:
         run: |
             apt update -y
 
-            apt search libmariadb
-            apt install pkg-config libmariadb-dev -y
-            ls -al /usr/include/mariadb/ 
+            apt search mariadb
+            apt install pkg-config mariadb-client -y
             pkg-config --cflags libmariadb
             pkg-config --libs libmariadb
