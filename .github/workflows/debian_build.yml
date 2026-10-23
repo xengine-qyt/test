@@ -53,4 +53,5 @@ jobs:
 
             apt search libmariadb
             apt install pkg-config libmariadb-dev -y
-            pkg-config -cflags mysqlclient
+            pkg-config --cflags libmariadb
+            pkg-config --libs libmariadb
