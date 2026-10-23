@@ -1,4 +1,4 @@
-name: rocky build workflows
+name: debian build workflows
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ${{ matrix.runner }}
     container:
-      image: rockylinux/rockylinux:${{ matrix.version }}
+      image: debian:${{ matrix.name }}
       options: --platform ${{ matrix.platform }}
     strategy:
       matrix:
@@ -19,12 +19,26 @@ jobs:
             runner: ubuntu-24.04
             platform: linux/amd64
             artifact: x86-64
-            version: 9
+            name: bookworm
+            version: 12
+          - arch: amd64
+            runner: ubuntu-24.04
+            platform: linux/amd64
+            artifact: x86-64
+            name: trixie
+            version: 13
           - arch: arm64
             runner: ubuntu-24.04-arm
             platform: linux/arm64
             artifact: Arm64
-            version: 9
+            name: bookworm
+            version: 12
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+            platform: linux/arm64
+            artifact: Arm64
+            name: trixie
+            version: 13
 
     steps:
       - name: Checkout main repository code
@@ -35,10 +49,8 @@ jobs:
 
       - name: test
         run: |
-            dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
-            dnf config-manager --enable crb
-            dnf update -y
+            apt update -y
 
-            dnf search mysql
-            dnf install mysql-libs mysql-devel -y
+            apt search mysql
+            apt install mysql-libs mysql-devel -y
             pkg-config -cflags mysqlclient
