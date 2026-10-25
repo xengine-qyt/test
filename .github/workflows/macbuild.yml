@@ -12,6 +12,7 @@ jobs:
       matrix:
         include:
           - os: macos-26
+          - os: macos-26-intel
     runs-on: ${{ matrix.os }}
     
     steps:
