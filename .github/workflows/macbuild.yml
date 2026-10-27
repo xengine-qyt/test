@@ -1,4 +1,4 @@
-name: ios build workflows
+name: mac build workflows
 
 on:
   push:
@@ -30,7 +30,5 @@ jobs:
         run: |
             brew update
             brew install pkg-config
-
-            brew list --versions boost
 
             brew install mysql-client@9.7
