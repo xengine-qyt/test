@@ -28,5 +28,9 @@ jobs:
              
       - name: install
         run: |
+            brew update
             brew install pkg-config
+
+            brew list --versions boost
+
             brew install mysql-client@9.7

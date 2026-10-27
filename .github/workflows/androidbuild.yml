@@ -1,0 +1,45 @@
+name: android build workflows
+
+on:
+  push:
+
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-24.04
+    runs-on: ${{ matrix.os }}
+
+    steps:
+       # 检出您的主仓库代码
+      - name: Checkout main repository code
+        uses: actions/checkout@v7
+        
+      - name: install ndk
+        run: |
+          wget https://dl.google.com/android/repository/android-ndk-r27d-linux.zip
+          unzip ./android-ndk-r27d-linux.zip
+          mv ./android-ndk-r27d $HOME/android-ndk
+
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v7
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg  
+          ref: 2026.10.16
+          
+      - name: vcpkg install
+        run: |
+            sudo apt install bison flex nasm -y
+            cp XEngine_SourceCode/arm64-android-xengine.cmake vcpkg/triplets/arm64-android-xengine.cmake
+            cp -rf ./vcpkg $HOME
+
+            echo "ANDROID_NDK_HOME=$HOME/android-ndk" >> $GITHUB_ENV
+
+            cd $HOME/vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:arm64-android-xengine curl[http2]:arm64-android-xengine zlib:arm64-android-xengine minizip:arm64-android-xengine sqlite3:arm64-android-xengine nghttp2:arm64-android-xengine ffmpeg:arm64-android-xengine --clean-after-build

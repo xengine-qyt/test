@@ -1,0 +1,40 @@
+name: ios build workflows
+
+on:
+  push:
+
+permissions:
+  contents: read
+  
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: macos-26
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout main repository code
+        uses: actions/checkout@v7
+
+      - name: brew install
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        
+      - name: vcpkg dependency repository
+        uses: actions/checkout@v7
+        with:
+          repository: microsoft/vcpkg
+          path: vcpkg        
+          ref: 2026.10.16
+             
+      - name: vcpkg install
+        run: |
+            brew install pkg-config autoconf nasm
+
+            cp XEngine_SourceCode/arm64-ios-xengine.cmake vcpkg/triplets/arm64-ios-xengine.cmake
+            cp -rf ./vcpkg $HOME
+            
+            cd $HOME/vcpkg
+            ./bootstrap-vcpkg.sh
+            ./vcpkg install libiconv:arm64-ios-xengine 'curl[openssl,http2]:arm64-ios-xengine' 'sqlite3:arm64-ios-xengine' 'zlib:arm64-ios-xengine' 'minizip:arm64-ios-xengine' 'nghttp2:arm64-ios-xengine' 'ffmpeg:arm64-ios-xengine' --clean-after-build
