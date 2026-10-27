@@ -26,11 +26,7 @@ jobs:
           path: vcpkg        
           ref: 2026.06.24
              
-      - name: vcpkg install
+      - name: install
         run: |
             brew install pkg-config
-
-            brew reinstall libpq
-            
-            pkg-config --cflags libpq
-            pkg-config --libs libpq
+            brew install mysql-client@9.7
